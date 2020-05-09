@@ -1,0 +1,47 @@
+<div fxLayout="column" 
+     fxLayoutAlign="center center"
+     style="padding-top: 15px;"
+     >
+    <img src="../../../assets/images/KBC.png" class="image">
+    <form #loginForm="ngForm" 
+          (ngSubmit)="onSubmit(loginForm)" 
+          fxLayout="column" 
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px"
+          fxFlex.xs="100%"
+          style="padding-top: 5px;">
+           <mat-form-field>
+                <input type="input"                                    
+                       matInput 
+                       placeholder="Your UserID"
+                       ngModel
+                       oninput="userId.value = userId.value.toUpperCase()"
+                       name="userId"
+                       required
+                       #userID ="ngModel">
+                 <mat-error *ngIf="userID.hasError('required') && userID.touched">
+                     User Id required
+                 </mat-error>
+            </mat-form-field>
+            <mat-form-field hintLabel="Password must be 6 chars long">
+                <input type="password" 
+                       matInput 
+                       placeholder="Your Password"
+                       ngModel
+                       name="password"
+                       #password="ngModel"
+                       required
+                       minlength="6">
+                 <mat-error *ngIf="password.hasError('required') && password.touched">
+                    Password is required
+                 </mat-error>
+                 <mat-error *ngIf="password.hasError('minlength') && password.touched">
+                    Password is not 6 chars
+                 </mat-error>      
+            </mat-form-field>
+            <button mat-raised-button 
+                    type="submit" 
+                    color="primary"
+                    [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>

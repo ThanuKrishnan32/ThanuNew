@@ -1,0 +1,23 @@
+<section fxLayout fxLayoutAlign="center" style="padding-top: 30px;">
+    <mat-card fxFlex="400px">
+        <mat-card-header>
+        <mat-card-title>
+            {{userData.firstName}} {{userData.lastName}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            <div [innerHTML]="userData.userId"></div>
+        </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+            <h3>Team :  <span> {{userData.team}}</span></h3>
+            <h3>Skills : </h3>
+            <div *ngIf = "!userSkills">
+                 <h4>You can add skills in edit your profile tab</h4>    
+            </div>
+            <div style="padding-top: 5px;" *ngFor="let skill of userSkills">
+                <h4> {{skill.skillName}} : <span> {{skill.skillLevel}}/100</span></h4>
+                <mat-progress-bar mode="determinate" value={{skill.skillLevel}} color="accent"></mat-progress-bar>
+            </div>    
+        </mat-card-content>
+    </mat-card>
+</section>

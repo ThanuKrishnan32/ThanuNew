@@ -1,0 +1,115 @@
+{
+  "teams": [
+    {
+      "id": 0,
+      "name": "OPN",
+      "value": "OPN"
+    },
+    {
+      "id": 1,
+      "name": "ODM",
+      "value": "OPN"
+    },
+    {
+      "id": 2,
+      "name": "OBR",
+      "value": "OBR"
+    }
+  ],
+  "skills": [
+    {
+      "id": 0,
+      "name": "Cobol"
+    },
+    {
+      "id": 1,
+      "name": "JCL"
+    },
+    {
+      "id": 2,
+      "name": "DB2"
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "userId": "JE10018",
+      "password": "tester",
+      "firstName": "Shyam",
+      "lastName": "Sundar",
+      "team": "OPN",
+      "skills": [
+        {
+          "skillName": "Cobol",
+          "skillLevel": "83"
+        },
+        {
+          "skillName": "JCL",
+          "skillLevel": "65"
+        },
+        {
+          "skillName": "DB2",
+          "skillLevel": "75"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "userId": "JE10019",
+      "password": "tester",
+      "firstName": "Thanu",
+      "lastName": "Krishnan",
+      "team": "OBR",
+      "skills": [
+        {
+          "skillName": "Cobol",
+          "skillLevel": 85
+        },
+        {
+          "skillName": "JCL",
+          "skillLevel": 80
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Praveen",
+      "lastName": "L",
+      "password": "tester",
+      "team": "OPN",
+      "userId": "JE10017"
+    },
+    {
+      "userId": "JE10021",
+      "password": "tester",
+      "firstName": "Thanu",
+      "lastName": "Krishnan",
+      "team": "OPN",
+      "id": 3
+    },
+    {
+      "userId": "JE10022",
+      "password": "tester",
+      "firstName": "Hari",
+      "lastName": "Krishnan",
+      "team": "OPN",
+      "id": 4
+    },
+    {
+      "userId": "JE10023",
+      "password": "tester",
+      "firstName": "Gagan",
+      "lastName": "Babu",
+      "team": "OPN",
+      "id": 5
+    },
+    {
+      "userId": "JE10024",
+      "password": "tester",
+      "firstName": "Suresh",
+      "lastName": "Gopi",
+      "team": "OPN",
+      "id": 6
+    }
+  ]
+}

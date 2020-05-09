@@ -1,0 +1,21 @@
+<mat-nav-list>
+    <a mat-list-item routerLink="/login" *ngIf="loggedInUser === false" (click)="onClick()">
+        <mat-icon>face</mat-icon>
+        <span class="nav-span">Login</span>
+    </a>
+    <a mat-list-item routerLink="/signup" *ngIf="loggedInUser === false" (click)="onClick()">
+        <mat-icon>person_add</mat-icon>
+        <span class="nav-span">Signup</span>
+    </a>
+    <a mat-list-item *ngIf="loggedInUser === true" (click)="onProfileClick()">
+        <mat-icon>person</mat-icon>
+        <span class="nav-span">Your Profile</span>
+    </a>
+    <mat-list-item>
+        <button mat-icon-button *ngIf="loggedInUser === true" (click)="onLogoutClick()">
+            <mat-icon>eject</mat-icon>
+            <span class="nav-span">Logout</span>
+        </button>
+    </mat-list-item>
+</mat-nav-list>
+

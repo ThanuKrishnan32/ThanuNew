@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/KBC-SkillMatrix",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

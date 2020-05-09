@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="shadow">
+    <div>
+        <button mat-icon-button (click)="onClick()" style="color: white;" fxHide.gt-xs>
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div style="color: white;">
+        <a (click)="onProfileClick()" style="cursor: pointer;">KBC Skill Matrix</a> 
+    </div>
+    <div fxFlex 
+         fxLayout 
+         fxLayoutAlign="flex-end" 
+         fxLayoutGap="10px"
+         fxHide.xs>
+        <a routerLink="/login" style="cursor: pointer;" *ngIf="loggedInUser === false">Login</a>
+        <a routerLink="/signup" style="cursor: pointer;" *ngIf="loggedInUser === false">Signup</a>
+        <a (click)="onProfileClick()" style="cursor: pointer;" *ngIf="loggedInUser === true">Your Profile</a>
+        <a *ngIf="loggedInUser === true" style="cursor: pointer;" (click)="onLogOut()">Logout</a>
+    </div>
+</mat-toolbar>
+

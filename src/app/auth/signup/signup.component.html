@@ -1,0 +1,97 @@
+<div fxLayout="column" 
+     fxLayoutAlign="center center"
+     >
+    <form #signupForm="ngForm" 
+          (ngSubmit)="onSubmit(signupForm)" 
+          fxLayout="column"
+          fxFlex.xs="100%" 
+          fxLayoutAlign="center center"
+          fxLayoutGap="10px"
+          style="padding-top: 30px;">
+           <mat-form-field hintLabel="This will be your KBC ID">
+                <input type="input" 
+                       matInput 
+                       placeholder="Your UserID"
+                       ngModel
+                       name="userId"
+                       required
+                       oninput="userId.value = userId.value.toUpperCase()"
+                       minlength="6"
+                       maxlength="7"
+                       #userID ="ngModel">
+                 <mat-error *ngIf="userID.hasError('required') && userID.touched">
+                     User Id required
+                 </mat-error>
+                 <mat-error *ngIf="userID.hasError('minlength') && userID.touched">
+                     Your KBC ID must be atleast 6 chars   
+                 </mat-error>
+                 <mat-error *ngIf="userID.hasError('maxlength') && userID.touched">
+                    Your KBC ID cannot be more than 7 chars   
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field hintLabel="Password must be 6 chars long">
+                <input type="password" 
+                       matInput 
+                       placeholder="Your Password"
+                       ngModel
+                       name="password"
+                       #password="ngModel"
+                       required
+                       minlength="6">
+                 <mat-error *ngIf="password.hasError('required') && password.touched">
+                    Password is required
+                 </mat-error>
+                 <mat-error *ngIf="password.hasError('minlength') && password.touched">
+                    Password is not 6 chars
+                 </mat-error>      
+            </mat-form-field>
+            <mat-form-field hintLabel="Give your First Name as in KBC">
+                <input type="input" 
+                       matInput 
+                       placeholder="Your First Name"
+                       ngModel
+                       name="firstName"
+                       [value]="signupForm.value.firstName | titlecase"
+                       #firstName="ngModel"
+                       required
+                       minlength="4">
+                 <mat-error *ngIf="firstName.hasError('required') && firstName.touched">
+                    First Name is required
+                 </mat-error>
+                 <mat-error *ngIf="firstName.hasError('minlength') && firstName.touched">
+                    Name is not 4 chars long
+                 </mat-error>      
+            </mat-form-field>
+            <mat-form-field>
+                <input type="input"
+                       matInput
+                       placeholder="Your Last Name or Initials"
+                       ngModel
+                       name="lastName"
+                       required
+                       minlength="1"
+                       [value]="signupForm.value.lastName | titlecase"
+                       #lastName="ngModel">
+                <mat-error *ngIf="lastName.hasError('required') && lastName.touched">
+                    Last Name or Initials required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Your Team</mat-label>
+                <mat-select ngModel 
+                            name="team"
+                            #team="ngModel">
+                  <mat-option *ngFor="let team of availableTeams" [value]="team.value">
+                    {{team.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="team.hasError('required') && team.touched">
+                    Please select a Team    
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button 
+                    type="submit" 
+                    color="primary"
+                    [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+</div>

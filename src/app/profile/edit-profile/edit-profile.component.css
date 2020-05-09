@@ -1,0 +1,6 @@
+.example-section {
+    display: table-cell;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }

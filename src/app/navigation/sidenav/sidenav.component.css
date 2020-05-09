@@ -1,0 +1,9 @@
+.nav-span{
+    display: inline-block;
+    padding-left: 3px;
+}
+
+a:hover,
+a:active {
+    color: cadetblue;
+}
