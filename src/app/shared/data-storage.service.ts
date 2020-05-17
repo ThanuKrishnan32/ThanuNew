@@ -13,7 +13,9 @@ import { AvailableSkill } from './availableSkill.model';
 export class DataStorage{
     teamsUrl = "http://localhost:3000/teams";
     usersUrl = "http://localhost:3000/users";
-    skillsUrl = "http://localhost:3000/skills";
+    genericSkillsUrl = "http://localhost:3000/genericskills";
+    domainSkillsUrl = "http://localhost:3000/domainskills";
+    kbcSkillsUrl = "http://localhost:3000/kbcskills";
 
     firstTime = false;
     users : Observable<any[]>;
@@ -34,8 +36,14 @@ export class DataStorage{
     getUsers(){
         return this.httpClient.get<User[]>(this.usersUrl);
     }
-    getSkills(){
-        return this.httpClient.get<AvailableSkill[]>(this.skillsUrl);
+    getGenericSkills(){
+        return this.httpClient.get<AvailableSkill[]>(this.genericSkillsUrl);
+    }
+    getDomainSkills(){
+        return this.httpClient.get<AvailableSkill[]>(this.domainSkillsUrl);
+    }
+    getKbcSkills(){
+        return this.httpClient.get<AvailableSkill[]>(this.kbcSkillsUrl);
     }
 
     loginUser(userId: string, password: string){
@@ -109,7 +117,7 @@ export class DataStorage{
         this.userData.lastName = undefined;
         this.userData.password = undefined;
         this.userData.team = undefined;
-        this.userData.skills = undefined;
+        this.userData.genericSkills = undefined;
         this.loggedInUser.next(this.userData);
         this.isAuth.next(false);
         this.router.navigate(['/login']);

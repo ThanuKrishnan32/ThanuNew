@@ -16,18 +16,62 @@
       "value": "OBR"
     }
   ],
-  "skills": [
+  "genericskills": [
     {
       "id": 0,
       "name": "Cobol"
     },
     {
       "id": 1,
-      "name": "JCL"
+      "name": "DB2"
     },
     {
       "id": 2,
-      "name": "DB2"
+      "name": "Angular"
+    },
+    {
+      "id": 3,
+      "name": "JCL"
+    },
+    {
+      "id": 4,
+      "name": "Javascript"
+    }
+  ],
+  "domainskills": [
+    {
+      "id": 0,
+      "name": "Cards & Payments"
+    },
+    {
+      "id": 1,
+      "name": "Life Insurance"
+    },
+    {
+      "id": 2,
+      "name": "Collection & Distribution"
+    }
+  ],
+  "kbcskills": [
+    {
+      "id": 0,
+      "name": "AMB"
+    },
+    {
+      "id": 1,
+      "name": "EGL"
+    },
+    {
+      "id": 2,
+      "name": "IDZ"
+    },
+    {
+      "id": 3,
+      "name": "RDZ"
+    },
+    {
+      "id": 4,
+      "name": "TOPAZ"
     }
   ],
   "users": [
@@ -55,61 +99,83 @@
     },
     {
       "id": 1,
-      "userId": "JE10019",
+      "userId": "JE10012",
       "password": "tester",
-      "firstName": "Thanu",
-      "lastName": "Krishnan",
-      "team": "OBR",
-      "skills": [
+      "firstName": "Santhana",
+      "lastName": "Kumar",
+      "team": "OPN",
+      "genericSkills": [
         {
           "skillName": "Cobol",
-          "skillLevel": 85
+          "skillLevel": "83"
         },
         {
           "skillName": "JCL",
-          "skillLevel": 80
+          "skillLevel": "65"
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Card and Payments",
+          "skillLevel": 56
+        },
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 98
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "AMB",
+          "skillLevel": "83"
+        },
+        {
+          "skillName": "EGL",
+          "skillLevel": "65"
         }
       ]
     },
     {
       "id": 2,
+      "userId": "JE10019",
+      "password": "tester",
+      "firstName": "Thanu",
+      "lastName": "Krishnan",
+      "team": "OPN",
+      "genericSkills": [
+        {
+          "skillName": "Angular",
+          "skillLevel": 38
+        },
+        {
+          "skillName": "Javascript",
+          "skillLevel": 91
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 17
+        },
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 50
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "RDZ",
+          "skillLevel": 92
+        }
+      ]
+    },
+    {
+      "id": 3,
       "firstName": "Praveen",
       "lastName": "L",
       "password": "tester",
       "team": "OPN",
       "userId": "JE10017"
-    },
-    {
-      "userId": "JE10021",
-      "password": "tester",
-      "firstName": "Thanu",
-      "lastName": "Krishnan",
-      "team": "OPN",
-      "id": 3
-    },
-    {
-      "userId": "JE10022",
-      "password": "tester",
-      "firstName": "Hari",
-      "lastName": "Krishnan",
-      "team": "OPN",
-      "id": 4
-    },
-    {
-      "userId": "JE10023",
-      "password": "tester",
-      "firstName": "Gagan",
-      "lastName": "Babu",
-      "team": "OPN",
-      "id": 5
-    },
-    {
-      "userId": "JE10024",
-      "password": "tester",
-      "firstName": "Suresh",
-      "lastName": "Gopi",
-      "team": "OPN",
-      "id": 6
     }
   ]
 }

@@ -1,23 +1,73 @@
-<section fxLayout fxLayoutAlign="center" style="padding-top: 30px;">
-    <mat-card fxFlex="400px">
+<!-- <section fxLayout fxLayoutAlign="center" style="padding-top: 30px;"> -->
+<h1 style="padding-top: 10px;" fxLayoutAlign="center" fxLayout="row wrap">
+    {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
+</h1>
+<div fxLayout.xs="column" fxLayoutAlign="center" fxLayout="row wrap" style="padding-top: 30px;" fxLayoutGap="10px" ngClass.gt-xs="ml-10">  
+    <!-- <mat-card fxFlex="400px"> -->
+    <mat-card fxFlex.sm="0 1 calc(50%-20px)" fxFlex.md="0 1 calc(33%-20px)" fxFlex.gt-md="0 1 calc(25%-20px)">
         <mat-card-header>
         <mat-card-title>
-            {{userData.firstName}} {{userData.lastName}}
+            Generic Skills
         </mat-card-title>
         <mat-card-subtitle>
-            <div [innerHTML]="userData.userId"></div>
+            (example: Angular, Javascript, Cobol, DB2etc.,)
         </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content fxLayout="column">
             <h3>Team :  <span> {{userData.team}}</span></h3>
             <h3>Skills : </h3>
-            <div *ngIf = "!userSkills">
-                 <h4>You can add skills in edit your profile tab</h4>    
+            <div *ngIf = "!userGenericSkills">
+                 <h4>You can add skills in <em>Edit your Profile</em> tab</h4>    
             </div>
-            <div style="padding-top: 5px;" *ngFor="let skill of userSkills">
-                <h4> {{skill.skillName}} : <span> {{skill.skillLevel}}/100</span></h4>
-                <mat-progress-bar mode="determinate" value={{skill.skillLevel}} color="accent"></mat-progress-bar>
+            <div style="padding-top: 5px;" *ngFor="let gskill of userGenericSkills">
+                <h4> {{gskill.skillName}} : <span> {{gskill.skillLevel}}/100</span></h4>
+                <mat-progress-bar mode="determinate" value={{gskill.skillLevel}} color="accent"></mat-progress-bar>
             </div>    
         </mat-card-content>
     </mat-card>
-</section>
+    <!-- <mat-card fxFlex="400px"> -->
+    <mat-card fxFlex.sm="0 1 calc(50%-20px)" fxFlex.md="0 1 calc(33%-20px)" fxFlex.gt-md="0 1 calc(25%-20px)">
+        <mat-card-header>
+        <mat-card-title>
+            Domain Skills
+        </mat-card-title>
+        <mat-card-subtitle>
+            (example: Cards & payments, Life Insurance etc.,)
+        </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+            <h3>Team :  <span> {{userData.team}}</span></h3>
+            <h3>Skills : </h3>
+            <div *ngIf = "!userDomainSkills">
+                 <h4>You can add skills in <em>Edit your Profile</em></h4>    
+            </div>
+            <div style="padding-top: 5px;" *ngFor="let dskill of userDomainSkills">
+                <h4> {{dskill.skillName}} : <span> {{dskill.skillLevel}}/100</span></h4>
+                <mat-progress-bar mode="determinate" value={{dskill.skillLevel}} color="accent"></mat-progress-bar>
+            </div>    
+        </mat-card-content>
+    </mat-card>
+    <!-- <mat-card fxFlex="400px"> -->
+    <mat-card fxFlex.sm="0 1 calc(50%-20px)" fxFlex.md="0 1 calc(33%-20px)" fxFlex.gt-md="0 1 calc(25%-20px)">
+        <mat-card-header>
+        <mat-card-title>
+            KBC Skills
+        </mat-card-title>
+        <mat-card-subtitle>
+            (example: tools like AMB, EGL, IDZ, TOPAZ, Squirrel etc.,)
+        </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content fxLayout="column">
+            <h3>Team :  <span> {{userData.team}}</span></h3>
+            <h3>Skills : </h3>
+            <div *ngIf = "!userKbcSkills">
+                 <h4>You can add skills in <em>Edit your Profile</em></h4>    
+            </div>
+            <div style="padding-top: 5px;" *ngFor="let kskill of userKbcSkills">
+                <h4> {{kskill.skillName}} : <span> {{kskill.skillLevel}}/100</span></h4>
+                <mat-progress-bar mode="determinate" value={{kskill.skillLevel}} color="accent"></mat-progress-bar>
+            </div>    
+        </mat-card-content>
+    </mat-card>
+</div>
+<!-- </section> -->

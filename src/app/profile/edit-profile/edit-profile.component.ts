@@ -22,13 +22,22 @@ export class EditProfileComponent implements OnInit {
     firstName: " ",
     lastName: " ",
     team: " ",
-    skills: []
+    genericSkills: [],
+    domainSkills: [],
+    kbcSkills: []
   }
 
   profileForm: FormGroup;
   availableTeams: teams[];
-  userSkills: Skill[];
-  availableSkills: AvailableSkill[];
+  // userSkills: Skill[];
+  userGenericSkills: Skill[];
+  userDomainSkills: Skill[];
+  userKbcSkills: Skill[];
+
+  
+  availableGenericSkills: AvailableSkill[];
+  availableDomainSkills: AvailableSkill[];
+  availableKbcSkills: AvailableSkill[];
 
   constructor(private dataStorageService: DataStorage,
               private fb: FormBuilder,
@@ -39,36 +48,85 @@ export class EditProfileComponent implements OnInit {
     this.dataStorageService.loggedInUser.subscribe(
       users=>{
           this.userData = users;
-          this.userSkills = this.userData.skills;
+          this.userGenericSkills = this.userData.genericSkills;
+          this.userDomainSkills = this.userData.domainSkills;
+          this.userKbcSkills = this.userData.kbcSkills;
           this.setForm(); 
+          console.log(this.profileForm.value);
       }
     );
     this.dataStorageService.getTeams().subscribe(teams=>{
       this.availableTeams = teams
     });  
-    this.dataStorageService.getSkills().subscribe(skills=>{
-      this.availableSkills = skills
+    this.dataStorageService.getGenericSkills().subscribe(skills=>{
+      this.availableGenericSkills = skills;
+      console.log(this.availableGenericSkills);
+    });
+    this.dataStorageService.getDomainSkills().subscribe(skills=>{
+      this.availableDomainSkills = skills;
+    });
+    this.dataStorageService.getKbcSkills().subscribe(skills=>{
+      this.availableKbcSkills = skills;
     });
   }  
 
-  onAddSkill(){
-    (<FormArray>this.profileForm.get('skills')).push(this.initSkillArray());
+  // onAddSkill(){
+  //   (<FormArray>this.profileForm.get('skills')).push(this.initSkillArray());
+  // }
+  onAddGenericSkill(){
+    (<FormArray>this.profileForm.get('genericSkills')).push(this.initSkillArray());
+  }
+  onAddDomainSkill(){
+    (<FormArray>this.profileForm.get('domainSkills')).push(this.initSkillArray());
+  }
+  onAddKbcSkill(){
+    (<FormArray>this.profileForm.get('kbcSkills')).push(this.initSkillArray());
   }
 
-  get skillControls() { 
-    return (<FormArray>this.profileForm.get('skills')).controls;
+  // get skillControls() { 
+  //   return (<FormArray>this.profileForm.get('skills')).controls;
+  // }
+  get genericSkillControls() { 
+    return (<FormArray>this.profileForm.get('genericSkills')).controls;
+  }
+  get domainSkillControls() { 
+    return (<FormArray>this.profileForm.get('domainSkills')).controls;
+  }
+  get kbcSkillControls() { 
+    return (<FormArray>this.profileForm.get('kbcSkills')).controls;
   }
 
   get f(){
     return this.profileForm.controls;
   }
 
-  get sFArray(){
-    return <FormArray>this.profileForm.get('skills')
+  // get sFArray(){
+  //   return <FormArray>this.profileForm.get('skills')
+  // }
+
+  // removeFormSkill(Arrayindex: number){
+  //   (<FormArray>this.profileForm.get('skills')).removeAt(Arrayindex);
+  // }
+  get sGenericFArray(){
+    return <FormArray>this.profileForm.get('genericSkills')
   }
 
-  removeFormSkill(Arrayindex: number){
-    (<FormArray>this.profileForm.get('skills')).removeAt(Arrayindex);
+  removeGenericFormSkill(Arrayindex: number){
+    (<FormArray>this.profileForm.get('genericSkills')).removeAt(Arrayindex);
+  }
+  get sDomainFArray(){
+    return <FormArray>this.profileForm.get('domainSkills')
+  }
+
+  removeDomainFormSkill(Arrayindex: number){
+    (<FormArray>this.profileForm.get('domainSkills')).removeAt(Arrayindex);
+  }
+  get sKbcFArray(){
+    return <FormArray>this.profileForm.get('kbcSkills')
+  }
+
+  removeKbcFormSkill(Arrayindex: number){
+    (<FormArray>this.profileForm.get('kbcSkills')).removeAt(Arrayindex);
   }
 
   private initForm(){
@@ -81,7 +139,10 @@ export class EditProfileComponent implements OnInit {
         firstName: new FormControl('',[Validators.required]),
         lastName: new FormControl('',[Validators.required]),
         team : new FormControl('',[Validators.required]),     
-        skills: new FormArray([this.initSkillArray()])
+        // skills: new FormArray([this.initSkillArray()])
+        genericSkills: new FormArray([this.initSkillArray()]),
+        domainSkills: new FormArray([this.initSkillArray()]),
+        kbcSkills: new FormArray([this.initSkillArray()])
       }
     );
   }
@@ -104,7 +165,9 @@ export class EditProfileComponent implements OnInit {
       team : this.userData.team
     }) 
 
-    this.profileForm.setControl('skills', this.setUserSkills(this.userData.skills));
+    this.profileForm.setControl('genericSkills', this.setUserSkills(this.userData.genericSkills));
+    this.profileForm.setControl('domainSkills', this.setUserSkills(this.userData.domainSkills));
+    this.profileForm.setControl('kbcSkills', this.setUserSkills(this.userData.kbcSkills));
   }
 
   private setUserSkills(skills: Skill[]): FormArray{
