@@ -18,6 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressBarModule,
     MatRadioModule,
     MatSliderModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatBadgeModule
   ],
   exports : [MatMenuModule,
              MatButtonModule,
@@ -61,6 +63,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
              MatRadioModule,
              ReactiveFormsModule,
              MatSliderModule,
-             MatTooltipModule]
+             MatTooltipModule,
+             MatBadgeModule]
 })
 export class MaterialModule { }

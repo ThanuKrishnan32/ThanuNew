@@ -8,7 +8,7 @@
     {
       "id": 1,
       "name": "ODM",
-      "value": "OPN"
+      "value": "ODM"
     },
     {
       "id": 2,
@@ -141,7 +141,7 @@
       "password": "tester",
       "firstName": "Thanu",
       "lastName": "Krishnan",
-      "team": "OPN",
+      "team": "ODM",
       "genericSkills": [
         {
           "skillName": "Angular",
@@ -155,7 +155,7 @@
       "domainSkills": [
         {
           "skillName": "Life Insurance",
-          "skillLevel": 17
+          "skillLevel": 48
         },
         {
           "skillName": "Collection & Distribution",
@@ -165,7 +165,7 @@
       "kbcSkills": [
         {
           "skillName": "RDZ",
-          "skillLevel": 92
+          "skillLevel": 72
         }
       ]
     },
@@ -176,6 +176,32 @@
       "password": "tester",
       "team": "OPN",
       "userId": "JE10017"
+    },
+    {
+      "id": 4,
+      "userId": "JE45678",
+      "password": "tester",
+      "firstName": "Thanu",
+      "lastName": "Krishnan",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 43
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 50
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "TOPAZ",
+          "skillLevel": 56
+        }
+      ]
     }
   ]
 }

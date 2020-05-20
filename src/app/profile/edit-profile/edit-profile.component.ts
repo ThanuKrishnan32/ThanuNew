@@ -7,6 +7,8 @@ import { Skill } from 'src/app/shared/skill.model';
 import { AvailableSkill } from 'src/app/shared/availableSkill.model';
 import { DialogComponent } from '../../shared/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { error } from '@angular/compiler/src/util';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -29,22 +31,35 @@ export class EditProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   availableTeams: teams[];
-  // userSkills: Skill[];
   userGenericSkills: Skill[];
   userDomainSkills: Skill[];
   userKbcSkills: Skill[];
 
-  
+  inputId: number;
+  typeToEdit: String;
   availableGenericSkills: AvailableSkill[];
   availableDomainSkills: AvailableSkill[];
   availableKbcSkills: AvailableSkill[];
 
   constructor(private dataStorageService: DataStorage,
               private fb: FormBuilder,
-              public dialog: MatDialog,) { }
+              private router: Router,
+              public dialog: MatDialog,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.initForm();
+    this.activatedRoute.params.subscribe(
+      (params : Params)=>{
+        this.inputId = +params['id'];
+      } 
+    );
+    this.activatedRoute.queryParams.subscribe(
+      (params : Params)=>{
+        this.typeToEdit = params['skill'];
+      } 
+    );
+    this.dataStorageService.getUser(this.inputId);
     this.dataStorageService.loggedInUser.subscribe(
       users=>{
           this.userData = users;
@@ -52,15 +67,13 @@ export class EditProfileComponent implements OnInit {
           this.userDomainSkills = this.userData.domainSkills;
           this.userKbcSkills = this.userData.kbcSkills;
           this.setForm(); 
-          console.log(this.profileForm.value);
-      }
+            }
     );
     this.dataStorageService.getTeams().subscribe(teams=>{
       this.availableTeams = teams
     });  
     this.dataStorageService.getGenericSkills().subscribe(skills=>{
       this.availableGenericSkills = skills;
-      console.log(this.availableGenericSkills);
     });
     this.dataStorageService.getDomainSkills().subscribe(skills=>{
       this.availableDomainSkills = skills;
@@ -70,9 +83,6 @@ export class EditProfileComponent implements OnInit {
     });
   }  
 
-  // onAddSkill(){
-  //   (<FormArray>this.profileForm.get('skills')).push(this.initSkillArray());
-  // }
   onAddGenericSkill(){
     (<FormArray>this.profileForm.get('genericSkills')).push(this.initSkillArray());
   }
@@ -83,9 +93,6 @@ export class EditProfileComponent implements OnInit {
     (<FormArray>this.profileForm.get('kbcSkills')).push(this.initSkillArray());
   }
 
-  // get skillControls() { 
-  //   return (<FormArray>this.profileForm.get('skills')).controls;
-  // }
   get genericSkillControls() { 
     return (<FormArray>this.profileForm.get('genericSkills')).controls;
   }
@@ -100,13 +107,6 @@ export class EditProfileComponent implements OnInit {
     return this.profileForm.controls;
   }
 
-  // get sFArray(){
-  //   return <FormArray>this.profileForm.get('skills')
-  // }
-
-  // removeFormSkill(Arrayindex: number){
-  //   (<FormArray>this.profileForm.get('skills')).removeAt(Arrayindex);
-  // }
   get sGenericFArray(){
     return <FormArray>this.profileForm.get('genericSkills')
   }
@@ -139,7 +139,6 @@ export class EditProfileComponent implements OnInit {
         firstName: new FormControl('',[Validators.required]),
         lastName: new FormControl('',[Validators.required]),
         team : new FormControl('',[Validators.required]),     
-        // skills: new FormArray([this.initSkillArray()])
         genericSkills: new FormArray([this.initSkillArray()]),
         domainSkills: new FormArray([this.initSkillArray()]),
         kbcSkills: new FormArray([this.initSkillArray()])

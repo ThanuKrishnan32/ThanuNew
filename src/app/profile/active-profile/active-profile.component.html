@@ -1,14 +1,18 @@
-<!-- <section fxLayout fxLayoutAlign="center" style="padding-top: 30px;"> -->
 <h1 style="padding-top: 10px;" fxLayoutAlign="center" fxLayout="row wrap">
     {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
 </h1>
-<div fxLayout.xs="column" fxLayoutAlign="center" fxLayout="row wrap" style="padding-top: 30px;" fxLayoutGap="10px" ngClass.gt-xs="ml-10">  
-    <!-- <mat-card fxFlex="400px"> -->
-    <mat-card fxFlex.sm="0 1 calc(50%-20px)" fxFlex.md="0 1 calc(33%-20px)" fxFlex.gt-md="0 1 calc(25%-20px)">
+<div  fxLayout.gt-sm= "row" fxLayoutAlign="center" fxLayout="column" style="padding-top: 30px;" fxLayoutGap="10px"> 
+    <mat-card>
         <mat-card-header>
         <mat-card-title>
             Generic Skills
         </mat-card-title>
+        <button mat-fab color="primary"
+                matTooltip="Edit Skill"
+                matTooltipPosition = "right"
+                (click)="onEditClick('genericSkill')">  
+                <mat-icon>edit</mat-icon>
+        </button>
         <mat-card-subtitle>
             (example: Angular, Javascript, Cobol, DB2etc.,)
         </mat-card-subtitle>
@@ -25,15 +29,20 @@
             </div>    
         </mat-card-content>
     </mat-card>
-    <!-- <mat-card fxFlex="400px"> -->
-    <mat-card fxFlex.sm="0 1 calc(50%-20px)" fxFlex.md="0 1 calc(33%-20px)" fxFlex.gt-md="0 1 calc(25%-20px)">
+    <mat-card>
         <mat-card-header>
-        <mat-card-title>
-            Domain Skills
-        </mat-card-title>
-        <mat-card-subtitle>
+            <mat-card-title>
+                Domain Skills
+            </mat-card-title>
+            <button mat-fab color="primary"
+                    matTooltip="Edit Skill"
+                    matTooltipPosition = "right"
+                    (click)="onEditClick('domainSkill')">  
+                    <mat-icon>edit</mat-icon>
+            </button>
+            <mat-card-subtitle>
             (example: Cards & payments, Life Insurance etc.,)
-        </mat-card-subtitle>
+            </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content fxLayout="column">
             <h3>Team :  <span> {{userData.team}}</span></h3>
@@ -47,12 +56,17 @@
             </div>    
         </mat-card-content>
     </mat-card>
-    <!-- <mat-card fxFlex="400px"> -->
-    <mat-card fxFlex.sm="0 1 calc(50%-20px)" fxFlex.md="0 1 calc(33%-20px)" fxFlex.gt-md="0 1 calc(25%-20px)">
+    <mat-card>
         <mat-card-header>
         <mat-card-title>
             KBC Skills
         </mat-card-title>
+        <button mat-fab color="primary"
+                matTooltip="Edit Skill"
+                matTooltipPosition = "right"
+                (click)="onEditClick('kbcSkill')">  
+                <mat-icon>edit</mat-icon>
+        </button>
         <mat-card-subtitle>
             (example: tools like AMB, EGL, IDZ, TOPAZ, Squirrel etc.,)
         </mat-card-subtitle>
@@ -70,4 +84,3 @@
         </mat-card-content>
     </mat-card>
 </div>
-<!-- </section> -->

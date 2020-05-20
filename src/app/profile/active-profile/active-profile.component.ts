@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
 import { User } from 'src/app/shared/user.model';
 import { Skill } from 'src/app/shared/skill.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-active-profile',
@@ -24,7 +25,8 @@ export class ActiveProfileComponent implements OnInit {
   userGenericSkills: Skill[];
   userDomainSkills: Skill[];
   userKbcSkills: Skill[];
-  constructor(private datastorageService: DataStorage) { }
+  constructor(private datastorageService: DataStorage,
+              private router: Router) { }
 
   ngOnInit() {
        this.datastorageService.loggedInUser.subscribe(
@@ -35,6 +37,10 @@ export class ActiveProfileComponent implements OnInit {
            this.userKbcSkills = this.userData.kbcSkills;
          }
        )
+  }
+
+  onEditClick(toeditSkill : String){
+       this.router.navigate(['/profile',this.userData.id,'edit'],{ queryParams: { skill: toeditSkill}})
   }
 
 }
