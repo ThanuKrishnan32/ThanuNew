@@ -18,8 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatBadgeModule } from '@angular/material/badge';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   imports: [
@@ -43,7 +42,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatRadioModule,
     MatSliderModule,
     MatTooltipModule,
-    MatBadgeModule
+    HighchartsChartModule
   ],
   exports : [MatMenuModule,
              MatButtonModule,
@@ -64,6 +63,6 @@ import { MatBadgeModule } from '@angular/material/badge';
              ReactiveFormsModule,
              MatSliderModule,
              MatTooltipModule,
-             MatBadgeModule]
+             HighchartsChartModule]
 })
 export class MaterialModule { }

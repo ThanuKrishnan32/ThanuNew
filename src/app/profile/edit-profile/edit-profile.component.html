@@ -1,6 +1,6 @@
 <mat-tab-group>
     <mat-tab label="Edit Your Profile"> 
-        <section fxLayout fxLayoutAlign="center" style="padding-top: 30px;">
+        <section fxLayout fxLayoutAlign="center">
             <mat-card fxFlex="400px" fxFlex.xs="100%">
                 <mat-card-header>
                 <mat-card-title>
@@ -56,14 +56,14 @@
                                         <div>
                                         <mat-label>Skill Level:</mat-label>
                                         <mat-slider
-                                                max="100"
+                                                max="7"
                                                 min="0"
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
                                                 style="margin: 3px; width: 60px;">
                                         </mat-slider>
-                                        <span>{{skill.get('skillLevel').value}} / 100</span>
+                                        <span>{{skill.get('skillLevel').value}} / 7</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
                                             Please provide a Generic skill level    
                                         </mat-error>
@@ -112,14 +112,14 @@
                                         <div>
                                         <mat-label>Skill Level:</mat-label>
                                         <mat-slider
-                                                max="100"
+                                                max="7"
                                                 min="0"
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
                                                 style="margin: 3px; width: 60px;">
                                         </mat-slider>
-                                        <span>{{skill.get('skillLevel').value}} / 100</span>
+                                        <span>{{skill.get('skillLevel').value}} / 7</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
                                             Please provide a Domain skill level    
                                         </mat-error>
@@ -167,14 +167,14 @@
                                         <div>
                                         <mat-label>Skill Level:</mat-label>
                                         <mat-slider
-                                                max="100"
+                                                max="7"
                                                 min="0"
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
                                                 style="margin: 3px; width: 60px;">
                                         </mat-slider>
-                                        <span>{{skill.get('skillLevel').value}} / 100</span>
+                                        <span>{{skill.get('skillLevel').value}} / 7</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
                                             Please provide a KBC skill level    
                                         </mat-error>

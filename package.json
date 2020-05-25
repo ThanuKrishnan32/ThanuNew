@@ -24,6 +24,8 @@
     "@angular/router": "~9.0.2",
     "angularfire2": "^5.4.2",
     "firebase": "^7.14.0",
+    "highcharts": "^8.1.0",
+    "highcharts-angular": "^2.4.0",
     "json-server": "^0.16.1",
     "rxjs": "~6.5.4",
     "rxjs-compat": "^6.5.5",

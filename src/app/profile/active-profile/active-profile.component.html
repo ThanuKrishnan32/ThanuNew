@@ -1,4 +1,4 @@
-<h1 style="padding-top: 10px;" fxLayoutAlign="center" fxLayout="row wrap">
+<h1 style="padding-top: 10px;" fxLayoutAlign="center" fxLayout="row">
     {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
 </h1>
 <div  fxLayout.gt-sm= "row" fxLayoutAlign="center" fxLayout="column" style="padding-top: 30px;" fxLayoutGap="10px"> 
@@ -20,13 +20,20 @@
         <mat-card-content fxLayout="column">
             <h3>Team :  <span> {{userData.team}}</span></h3>
             <h3>Skills : </h3>
-            <div *ngIf = "!userGenericSkills">
-                 <h4>You can add skills in <em>Edit your Profile</em> tab</h4>    
+            <div *ngIf = "!userGenericSkills || userGenericSkills.length === 0">
+                 <h4>You can add skills by clicking the <em>Edit Skill</em> button</h4>    
             </div>
-            <div style="padding-top: 5px;" *ngFor="let gskill of userGenericSkills">
+            <div *ngIf="genericChartOptions && userGenericSkills.length > 0">
+                <highcharts-chart 
+                    [Highcharts]="Highcharts"
+                    [options]="genericChartOptions"
+                    style= "width: 100%; height: 200px; display: block;"
+                ></highcharts-chart>
+            </div>   
+            <!-- <div style="padding-top: 5px;" *ngFor="let gskill of userGenericSkills">
                 <h4> {{gskill.skillName}} : <span> {{gskill.skillLevel}}/100</span></h4>
                 <mat-progress-bar mode="determinate" value={{gskill.skillLevel}} color="accent"></mat-progress-bar>
-            </div>    
+            </div>     -->
         </mat-card-content>
     </mat-card>
     <mat-card>
@@ -47,13 +54,20 @@
         <mat-card-content fxLayout="column">
             <h3>Team :  <span> {{userData.team}}</span></h3>
             <h3>Skills : </h3>
-            <div *ngIf = "!userDomainSkills">
-                 <h4>You can add skills in <em>Edit your Profile</em></h4>    
+            <div *ngIf = "!userDomainSkills || userDomainSkills.length === 0">
+                 <h4>You can add skills by clicking the <em>Edit Skill</em> button</h4>    
             </div>
-            <div style="padding-top: 5px;" *ngFor="let dskill of userDomainSkills">
+            <div *ngIf="domainChartOptions && userDomainSkills.length > 0">
+                <highcharts-chart 
+                    [Highcharts]="Highcharts"
+                    [options]="domainChartOptions"
+                    style="width: 100%; height: 200px; display: block;"
+                ></highcharts-chart>
+            </div>         
+            <!-- <div style="padding-top: 5px;" *ngFor="let dskill of userDomainSkills">
                 <h4> {{dskill.skillName}} : <span> {{dskill.skillLevel}}/100</span></h4>
                 <mat-progress-bar mode="determinate" value={{dskill.skillLevel}} color="accent"></mat-progress-bar>
-            </div>    
+            </div>      -->
         </mat-card-content>
     </mat-card>
     <mat-card>
@@ -68,19 +82,26 @@
                 <mat-icon>edit</mat-icon>
         </button>
         <mat-card-subtitle>
-            (example: tools like AMB, EGL, IDZ, TOPAZ, Squirrel etc.,)
+            (example: tools like AMB, EGL, IDZ etc.,)
         </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content fxLayout="column">
             <h3>Team :  <span> {{userData.team}}</span></h3>
             <h3>Skills : </h3>
-            <div *ngIf = "!userKbcSkills">
-                 <h4>You can add skills in <em>Edit your Profile</em></h4>    
+            <div *ngIf = "!userKbcSkills || userKbcSkills.length === 0">
+                 <h4>You can add skills by clicking the <em>Edit Skill</em> button</h4>    
             </div>
-            <div style="padding-top: 5px;" *ngFor="let kskill of userKbcSkills">
+            <div *ngIf="kbcSkillChartOptions && userKbcSkills.length > 0">
+                <highcharts-chart 
+                    [Highcharts]="Highcharts"
+                    [options]="kbcSkillChartOptions"
+                    style=" width:100%; height: 200px; display: block;"
+                ></highcharts-chart>
+            </div>   
+            <!-- <div style="padding-top: 5px;" *ngFor="let kskill of userKbcSkills">
                 <h4> {{kskill.skillName}} : <span> {{kskill.skillLevel}}/100</span></h4>
                 <mat-progress-bar mode="determinate" value={{kskill.skillLevel}} color="accent"></mat-progress-bar>
-            </div>    
+            </div>      -->
         </mat-card-content>
     </mat-card>
 </div>

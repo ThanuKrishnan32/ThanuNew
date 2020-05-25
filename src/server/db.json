@@ -145,27 +145,31 @@
       "genericSkills": [
         {
           "skillName": "Angular",
-          "skillLevel": 38
+          "skillLevel": 4
         },
         {
           "skillName": "Javascript",
-          "skillLevel": 91
+          "skillLevel": 5
         }
       ],
       "domainSkills": [
         {
           "skillName": "Life Insurance",
-          "skillLevel": 48
+          "skillLevel": 6
         },
         {
           "skillName": "Collection & Distribution",
-          "skillLevel": 50
+          "skillLevel": 5
         }
       ],
       "kbcSkills": [
         {
-          "skillName": "RDZ",
-          "skillLevel": 72
+          "skillName": "IDZ",
+          "skillLevel": 6
+        },
+        {
+          "skillName": "EGL",
+          "skillLevel": 5
         }
       ]
     },
@@ -200,6 +204,44 @@
         {
           "skillName": "TOPAZ",
           "skillLevel": 56
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "userId": "JE12346",
+      "password": "tester",
+      "firstName": "David",
+      "lastName": "Iniesta",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        },
+        {
+          "skillName": "Angular",
+          "skillLevel": 5
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 2
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "EGL",
+          "skillLevel": 2
+        },
+        {
+          "skillName": "IDZ",
+          "skillLevel": 5
         }
       ]
     }
