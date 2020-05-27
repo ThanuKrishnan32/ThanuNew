@@ -81,7 +81,6 @@ export class ActiveProfileComponent implements OnInit {
   }
 
   createGenericSkillsChart(){
-    console.log(this.chartData);
     this.genericChartOptions = {
       chart: {
           type: 'bar',
@@ -126,7 +125,6 @@ export class ActiveProfileComponent implements OnInit {
   }
 
   createDomainSkillsChart(){
-    console.log(this.chartData);
     this.domainChartOptions = {
       chart: {
           type: 'bar',
@@ -170,7 +168,6 @@ export class ActiveProfileComponent implements OnInit {
     }
   }
   createKbcSkillsChart(){
-    console.log(this.chartData);
     this.kbcSkillChartOptions = {
       chart: {
           type: 'bar',
