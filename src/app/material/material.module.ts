@@ -19,6 +19,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     MatRadioModule,
     MatSliderModule,
     MatTooltipModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatBottomSheetModule
   ],
   exports : [MatMenuModule,
              MatButtonModule,
@@ -63,6 +65,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
              ReactiveFormsModule,
              MatSliderModule,
              MatTooltipModule,
-             HighchartsChartModule]
+             HighchartsChartModule,
+             MatBottomSheetModule]
 })
 export class MaterialModule { }

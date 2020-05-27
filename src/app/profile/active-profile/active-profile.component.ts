@@ -5,6 +5,8 @@ import { Skill } from 'src/app/shared/skill.model';
 import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { ChartModel } from 'src/app/shared/ChartModel.model';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
 
 @Component({
   selector: 'app-active-profile',
@@ -31,13 +33,15 @@ export class ActiveProfileComponent implements OnInit {
   genericChartOptions: {};
   domainChartOptions: {};
   kbcSkillChartOptions: {};
+  maxSkillValue: number = 8;
   chartData : ChartModel[] = [];
    
 
   Highcharts = Highcharts;
 
   constructor(private datastorageService: DataStorage,
-              private router: Router) { }
+              private router: Router,
+              private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
        this.datastorageService.loggedInUser.subscribe(
@@ -72,6 +76,10 @@ export class ActiveProfileComponent implements OnInit {
     ); 
   }
 
+  openBottomLegendSheet(): void{
+    this.bottomSheet.open(BottomSheetLegendComponent);
+  }
+
   createGenericSkillsChart(){
     console.log(this.chartData);
     this.genericChartOptions = {
@@ -90,7 +98,7 @@ export class ActiveProfileComponent implements OnInit {
       },
       yAxis: {
           min: 0,
-          max: 7,
+          max: this.maxSkillValue,
           tickInterval: 1,
           title: {
               text: 'Skill Level',
@@ -135,7 +143,7 @@ export class ActiveProfileComponent implements OnInit {
       },
       yAxis: {
           min: 0,
-          max: 7,
+          max: this.maxSkillValue,
           tickInterval: 1,
           title: {
               text: 'Skill Level',
@@ -179,7 +187,7 @@ export class ActiveProfileComponent implements OnInit {
       },
       yAxis: {
           min: 0,
-          max: 7,
+          max: this.maxSkillValue,
           tickInterval: 1,
           title: {
               text: 'Skill Level',

@@ -5,6 +5,7 @@ import { DialogComponent } from '../../shared/dialog.component';
 import { DataStorage } from 'src/app/shared/data-storage.service';
 import { teams } from 'src/app/shared/teams.model';
 import { User } from 'src/app/shared/user.model';
+import { DialogErrorComponent } from 'src/app/shared/dialog-error.component';
 
 @Component({
   selector: 'app-signup',
@@ -41,7 +42,9 @@ export class SignupComponent implements OnInit {
           this.userData = form.value;
           this.userCheckData = this.userArray.find(loginUser => loginUser.userId === this.userData.userId )
           if(this.userCheckData){
-            alert('UserID already exists could you please check?')
+            const dialogref = this.dialog.open(DialogErrorComponent,{
+              data:{error:'UserID already exists could you please check?'}
+              });
           }else{
             this.dataStorageService.signupUser(this.userData);
           } 

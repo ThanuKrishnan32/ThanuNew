@@ -15,6 +15,7 @@ import { ActiveProfileComponent } from './profile/active-profile/active-profile.
 import { DialogComponent } from './shared/dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogErrorComponent } from './shared/dialog-error.component';
+import { BottomSheetLegendComponent } from './shared/bottomsheet-legend.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DialogErrorComponent } from './shared/dialog-error.component';
     ProfileComponent,
     EditProfileComponent,
     ActiveProfileComponent,
-    DialogComponent
+    DialogComponent,
+    BottomSheetLegendComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { DialogErrorComponent } from './shared/dialog-error.component';
   providers: [],
   bootstrap: [AppComponent],
   entryComponents:[DialogComponent,
-                   DialogErrorComponent]
+                   DialogErrorComponent,
+                   BottomSheetLegendComponent]
 })
 export class AppModule { }

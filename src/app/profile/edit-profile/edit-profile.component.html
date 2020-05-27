@@ -6,6 +6,12 @@
                 <mat-card-title>
                     {{userData.firstName}} {{userData.lastName}}
                 </mat-card-title>
+                <button mat-raised-button 
+                        type="button" 
+                        color="primary"
+                        style="position: absolute; top: 10px;  right: 10px;"
+                        (click)="openBottomLegendSheet()"
+                >Show Legend</button>    
                 <mat-card-subtitle>
                     <div [innerHTML]="userData.userId"></div>
                 </mat-card-subtitle>
@@ -56,14 +62,14 @@
                                         <div>
                                         <mat-label>Skill Level:</mat-label>
                                         <mat-slider
-                                                max="7"
-                                                min="0"
+                                                max="8"
+                                                min="4"
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
                                                 style="margin: 3px; width: 60px;">
                                         </mat-slider>
-                                        <span>{{skill.get('skillLevel').value}} / 7</span>
+                                        <span>{{skill.get('skillLevel').value}} / {{maxSkillValue}}</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
                                             Please provide a Generic skill level    
                                         </mat-error>
@@ -112,14 +118,14 @@
                                         <div>
                                         <mat-label>Skill Level:</mat-label>
                                         <mat-slider
-                                                max="7"
-                                                min="0"
+                                                max="8"
+                                                min="4"
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
                                                 style="margin: 3px; width: 60px;">
                                         </mat-slider>
-                                        <span>{{skill.get('skillLevel').value}} / 7</span>
+                                        <span>{{skill.get('skillLevel').value}} / {{maxSkillValue}}</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
                                             Please provide a Domain skill level    
                                         </mat-error>
@@ -167,14 +173,14 @@
                                         <div>
                                         <mat-label>Skill Level:</mat-label>
                                         <mat-slider
-                                                max="7"
-                                                min="0"
+                                                max="8"
+                                                min="4"
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
                                                 style="margin: 3px; width: 60px;">
                                         </mat-slider>
-                                        <span>{{skill.get('skillLevel').value}} / 7</span>
+                                        <span>{{skill.get('skillLevel').value}} / {{maxSkillValue}}</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
                                             Please provide a KBC skill level    
                                         </mat-error>

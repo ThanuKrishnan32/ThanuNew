@@ -150,12 +150,24 @@
         {
           "skillName": "Javascript",
           "skillLevel": 5
+        },
+        {
+          "skillName": "Cobol",
+          "skillLevel": 7
+        },
+        {
+          "skillName": "DB2",
+          "skillLevel": 7
+        },
+        {
+          "skillName": "JCL",
+          "skillLevel": 6
         }
       ],
       "domainSkills": [
         {
           "skillName": "Life Insurance",
-          "skillLevel": 6
+          "skillLevel": 8
         },
         {
           "skillName": "Collection & Distribution",
@@ -244,6 +256,22 @@
           "skillLevel": 5
         }
       ]
+    },
+    {
+      "id": 6,
+      "userId": "JE12347",
+      "password": "tester",
+      "firstName": "Giri",
+      "lastName": "Babu",
+      "team": "ODM",
+      "genericSkills": [],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 7
+        }
+      ],
+      "kbcSkills": []
     }
   ]
 }

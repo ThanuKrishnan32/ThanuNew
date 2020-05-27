@@ -1,8 +1,16 @@
-<h1 style="padding-top: 10px;" fxLayoutAlign="center" fxLayout="row">
-    {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
-</h1>
+<div fxLayout="row" fxLayoutAlign="center">
+    <h1 style="padding-top: 10px;" >
+        {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
+    </h1> 
+    <button mat-raised-button 
+                type="button" 
+                color="primary"
+                style="position: absolute; top: 10px;  right: 10px;"
+                (click)="openBottomLegendSheet()"
+                >Show Legend</button>        
+</div>
 <div  fxLayout.gt-sm= "row" fxLayoutAlign="center" fxLayout="column" style="padding-top: 30px;" fxLayoutGap="10px"> 
-    <mat-card>
+    <mat-card fxFlex="400px">
         <mat-card-header>
         <mat-card-title>
             Generic Skills
@@ -10,7 +18,8 @@
         <button mat-fab color="primary"
                 matTooltip="Edit Skill"
                 matTooltipPosition = "right"
-                (click)="onEditClick('genericSkill')">  
+                (click)="onEditClick('genericSkill')"
+                style="position: absolute; top: 10px;  right: 10px;">  
                 <mat-icon>edit</mat-icon>
         </button>
         <mat-card-subtitle>
@@ -36,7 +45,7 @@
             </div>     -->
         </mat-card-content>
     </mat-card>
-    <mat-card>
+    <mat-card fxFlex="400px">
         <mat-card-header>
             <mat-card-title>
                 Domain Skills
@@ -44,11 +53,12 @@
             <button mat-fab color="primary"
                     matTooltip="Edit Skill"
                     matTooltipPosition = "right"
-                    (click)="onEditClick('domainSkill')">  
+                    (click)="onEditClick('domainSkill')"
+                    style="position: absolute; top: 10px;  right: 10px;">  
                     <mat-icon>edit</mat-icon>
             </button>
             <mat-card-subtitle>
-            (example: Cards & payments, Life Insurance etc.,)
+            (example: Cards, payments, Life Insurance etc.,)
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content fxLayout="column">
@@ -70,7 +80,7 @@
             </div>      -->
         </mat-card-content>
     </mat-card>
-    <mat-card>
+    <mat-card fxFlex="400px">
         <mat-card-header>
         <mat-card-title>
             KBC Skills
@@ -78,7 +88,8 @@
         <button mat-fab color="primary"
                 matTooltip="Edit Skill"
                 matTooltipPosition = "right"
-                (click)="onEditClick('kbcSkill')">  
+                (click)="onEditClick('kbcSkill')"
+                style="position: absolute; top: 10px;  right: 10px;">  
                 <mat-icon>edit</mat-icon>
         </button>
         <mat-card-subtitle>

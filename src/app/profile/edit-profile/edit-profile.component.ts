@@ -9,6 +9,8 @@ import { DialogComponent } from '../../shared/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { error } from '@angular/compiler/src/util';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -36,6 +38,7 @@ export class EditProfileComponent implements OnInit {
   userKbcSkills: Skill[];
 
   inputId: number;
+  maxSkillValue: number = 8;
   typeToEdit: String;
   availableGenericSkills: AvailableSkill[];
   availableDomainSkills: AvailableSkill[];
@@ -45,7 +48,8 @@ export class EditProfileComponent implements OnInit {
               private fb: FormBuilder,
               private router: Router,
               public dialog: MatDialog,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.initForm();
@@ -114,6 +118,8 @@ export class EditProfileComponent implements OnInit {
   removeGenericFormSkill(Arrayindex: number){
     (<FormArray>this.profileForm.get('genericSkills')).removeAt(Arrayindex);
   }
+
+
   get sDomainFArray(){
     return <FormArray>this.profileForm.get('domainSkills')
   }
@@ -184,6 +190,10 @@ export class EditProfileComponent implements OnInit {
      return skillArray; 
   }
 
+  openBottomLegendSheet(): void{
+    this.bottomSheet.open(BottomSheetLegendComponent);
+  }
+
   onSubmit(){
     const dialogref = this.dialog.open(DialogComponent);
     dialogref.afterClosed().subscribe(
@@ -192,7 +202,6 @@ export class EditProfileComponent implements OnInit {
           this.userData = this.profileForm.value;
           this.dataStorageService.editUser(this.userData,this.userData.id); 
         }
-      })
-    
+      })  
   }
 }
