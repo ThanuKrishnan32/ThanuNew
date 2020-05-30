@@ -271,7 +271,20 @@
           "skillLevel": 7
         }
       ],
-      "kbcSkills": []
+      "kbcSkills": [
+        {
+          "skillName": "AMB",
+          "skillLevel": 6
+        }
+      ]
+    },
+    {
+      "userId": "JE12348",
+      "password": "tester",
+      "firstName": "David",
+      "lastName": "S",
+      "team": "ODM",
+      "id": 7
     }
   ]
 }
