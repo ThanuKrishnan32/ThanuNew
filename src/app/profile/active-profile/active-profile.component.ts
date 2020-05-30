@@ -34,6 +34,7 @@ export class ActiveProfileComponent implements OnInit {
   domainChartOptions: {};
   kbcSkillChartOptions: {};
   maxSkillValue: number = 8;
+  maxChartWidth: number = 325;
   chartData : ChartModel[] = [];
    
 
@@ -84,7 +85,7 @@ export class ActiveProfileComponent implements OnInit {
     this.genericChartOptions = {
       chart: {
           type: 'bar',
-          width: 400
+          width: this.maxChartWidth
       },
       title: {
           text: 'Your General Skills'
@@ -128,7 +129,7 @@ export class ActiveProfileComponent implements OnInit {
     this.domainChartOptions = {
       chart: {
           type: 'bar',
-          width: 400
+          width: this.maxChartWidth
       },
       title: {
           text: 'Your Domain Skills'
@@ -171,7 +172,7 @@ export class ActiveProfileComponent implements OnInit {
     this.kbcSkillChartOptions = {
       chart: {
           type: 'bar',
-          width: 400
+          width: this.maxChartWidth
       },
       title: {
           text: 'Your KBC specific Skills'
