@@ -33,6 +33,7 @@ export class ProfileCardComponent implements OnInit {
   chartOptions: {};
   maxSkillValue: number = 8;
   maxChartWidth: number = 325;
+  maxChartHeight: number = 250;
   chartData : ChartModel[] = [];
   qpVariable : string;
   chartTitleText : string;
@@ -53,7 +54,7 @@ export class ProfileCardComponent implements OnInit {
       this.userKbcSkills = this.userData.kbcSkills;
       switch (this.inputSkillType){
         case 'Generic Skills': {
-          if(this.userGenericSkills.length === 0){
+          if(this.userGenericSkills === undefined){
             this.chartData = [];
           }else{
             this.fillArray(this.userGenericSkills);
@@ -67,7 +68,7 @@ export class ProfileCardComponent implements OnInit {
           break;
         }
         case 'Domain Skills': {
-          if(this.userDomainSkills.length === 0){
+          if(this.userDomainSkills === undefined){
             this.chartData = [];
           }else{
             this.fillArray(this.userDomainSkills);
@@ -81,15 +82,15 @@ export class ProfileCardComponent implements OnInit {
           break;
         }
         case 'KBC Skills': {
-          if(this.userKbcSkills.length === 0){
-            this.chartData = [];  
+          if(this.userKbcSkills === undefined){
+            this.chartData = [];
           }else{
             this.fillArray(this.userKbcSkills);  
           };
           this.qpVariable = 'kbcSkill';
           this.chartTitleText = 'Your KBC specific Skills';
           this.chartCategory = 'KBC Skills';
-          this.cardSubtitle = '(example: tools like AMB, EGL, IDZ etc.,)'
+          this.cardSubtitle = '(example: tools like AMB, EGL, IDZ, Confluence etc.,)'
           this.userSkillsArray = this.userKbcSkills;
           this.createSkillsChart();
           break;
@@ -120,7 +121,8 @@ createSkillsChart(){
  this.chartOptions = {
    chart: {
        type: 'bar',
-       width: this.maxChartWidth
+       width: this.maxChartWidth,
+       height: this.maxChartHeight
    },
    title: {
        text: this.chartTitleText

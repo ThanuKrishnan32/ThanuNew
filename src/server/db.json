@@ -162,6 +162,10 @@
         {
           "skillName": "JCL",
           "skillLevel": 6
+        },
+        {
+          "skillName": "Angular",
+          "skillLevel": 6
         }
       ],
       "domainSkills": [
@@ -172,6 +176,14 @@
         {
           "skillName": "Collection & Distribution",
           "skillLevel": 5
+        },
+        {
+          "skillName": "Cards & Payments",
+          "skillLevel": 8
+        },
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 6
         }
       ],
       "kbcSkills": [
@@ -264,7 +276,12 @@
       "firstName": "Giri",
       "lastName": "Babu",
       "team": "ODM",
-      "genericSkills": [],
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        }
+      ],
       "domainSkills": [
         {
           "skillName": "Life Insurance",
@@ -279,12 +296,20 @@
       ]
     },
     {
+      "id": 7,
       "userId": "JE12348",
       "password": "tester",
       "firstName": "David",
       "lastName": "S",
       "team": "ODM",
-      "id": 7
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [],
+      "kbcSkills": []
     }
   ]
 }

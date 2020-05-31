@@ -6,15 +6,19 @@
                 <mat-card-title>
                     {{userData.firstName}} {{userData.lastName}}
                 </mat-card-title>
-                <button mat-raised-button 
-                        type="button" 
-                        color="primary"
-                        style="position: absolute; top: 10px;  right: 10px;"
-                        (click)="openBottomLegendSheet()"
-                >Show Legend</button>    
                 <mat-card-subtitle>
                     <div [innerHTML]="userData.userId"></div>
                 </mat-card-subtitle>
+                <div fxFlex
+                     fxLayout
+                     fxLayoutAlign="flex-end">
+                    <button mat-raised-button 
+                            type="button" 
+                            color="primary"
+                            style="height: 35px;"
+                            (click)="openBottomLegendSheet()"
+                    >Show Legend</button>
+                </div>        
                 </mat-card-header>
                 <h4>**You can edit the details below**</h4>
                 <mat-card-content>
