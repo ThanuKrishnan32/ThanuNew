@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/KBC-SkillMatrix",
+    "public": "dist\\KBC-SkillMatrix",
     "ignore": [
       "firebase.json",
       "**/.*",

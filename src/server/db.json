@@ -144,10 +144,6 @@
       "team": "ODM",
       "genericSkills": [
         {
-          "skillName": "Angular",
-          "skillLevel": 4
-        },
-        {
           "skillName": "Javascript",
           "skillLevel": 5
         },
@@ -180,10 +176,6 @@
         {
           "skillName": "Cards & Payments",
           "skillLevel": 8
-        },
-        {
-          "skillName": "Life Insurance",
-          "skillLevel": 6
         }
       ],
       "kbcSkills": [
@@ -194,6 +186,10 @@
         {
           "skillName": "EGL",
           "skillLevel": 5
+        },
+        {
+          "skillName": "RDZ",
+          "skillLevel": 6
         }
       ]
     },
@@ -310,6 +306,32 @@
       ],
       "domainSkills": [],
       "kbcSkills": []
+    },
+    {
+      "id": 8,
+      "userId": "JE14356",
+      "password": "tester",
+      "firstName": "Harsh",
+      "lastName": "Vardhan",
+      "team": "OPN",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 6
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "EGL",
+          "skillLevel": 6
+        }
+      ]
     }
   ]
 }
