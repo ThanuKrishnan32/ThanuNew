@@ -14,8 +14,21 @@
             </button>
         </div>             
 </div>                       
-<div  fxLayout.lg= "row" fxLayoutAlign="center center" fxLayout="column" style="padding-top: 30px;" fxLayoutGap="10px"> 
+<div fxLayoutAlign="center center" fxLayout="column" style="padding-top: 30px;" fxLayoutGap="10px"> 
     <div *ngFor="let inputSkillType of skillTypes">
-        <app-profile-card [inputSkillType]=inputSkillType></app-profile-card>
+        <mat-accordion>
+            <mat-expansion-panel fxFlex.lg="1000px"
+                                 fxFlex.md="750px"
+                                 fxFlex.sm="550px"
+                                 fxFlex.lt-sm="320px">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{inputSkillType}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-profile-card [inputSkillType]=inputSkillType
+                                  fxFlex.lg="900px" fxFlex="auto"></app-profile-card>
+            </mat-expansion-panel>    
+        </mat-accordion>
     </div>  
 </div>

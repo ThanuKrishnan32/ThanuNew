@@ -54,8 +54,13 @@ export class DataStorage{
                 if(this.userData?.password){
                     if(this.userData.password === password){
                         this.loggedInUser.next(this.userData);
-                        this.router.navigate(['/profile',this.userData.id]);
-                        this.isAuth.next(true);
+                        if(this.userData.userId === "ADMINE"){
+                            this.router.navigate(['/admin']);
+                            this.isAuth.next(true);
+                        }else{    
+                            this.router.navigate(['/profile',this.userData.id]);
+                            this.isAuth.next(true);
+                        }
                     }else{
                         const dialogref = this.dialog.open(DialogErrorComponent,{
                             data:{error:'Could you please check your Username and password ?'}

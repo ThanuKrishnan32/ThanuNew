@@ -37,7 +37,7 @@
                             </mat-form-field>
                         </div>
                         <!-- This below piece of code is for Generic Skills -->
-                        <div *ngIf="typeToEdit === 'genericSkill'">
+                        <div *ngIf="typeToEdit === 'genericSkills'">
                             <div formArrayName="genericSkills"  
                                 *ngFor="let skill of genericSkillControls; let i = index">
                                 <div [formGroupName]="i" class="example-section">     
@@ -50,6 +50,9 @@
                                         </mat-select>
                                         <mat-error *ngIf="skill.get('skillName').hasError('required') && skill.get('skillName').touched">
                                             Please select a Generic skill    
+                                        </mat-error>
+                                        <mat-error *ngIf="skill.get('skillName').hasError('duplicateValue') && skill.get('skillName').touched">
+                                            You have selected a duplicate skill    
                                         </mat-error>
                                     </mat-form-field>
                                     <button mat-mini-fab
@@ -93,7 +96,7 @@
                         <br>    
                         <!-- This below piece of code is for Domain Skills -->
                         <br>
-                        <div *ngIf="typeToEdit === 'domainSkill'">
+                        <div *ngIf="typeToEdit === 'domainSkills'">
                             <div formArrayName="domainSkills"
                                 *ngFor="let skill of domainSkillControls; let i = index">
                                 <div [formGroupName]="i" class="example-section">     
@@ -106,6 +109,9 @@
                                         </mat-select>
                                         <mat-error *ngIf="skill.get('skillName').hasError('required') && skill.get('skillName').touched">
                                             Please select a Domain skill    
+                                        </mat-error>
+                                        <mat-error *ngIf="skill.get('skillName').hasError('duplicateValue') && skill.get('skillName').touched">
+                                            You have selected a duplicate skill    
                                         </mat-error>
                                     </mat-form-field>
                                     <button mat-mini-fab
@@ -148,7 +154,7 @@
                         </div>
                         <!-- This below piece of code is for KBC Skills -->
                         <br>
-                        <div *ngIf="typeToEdit === 'kbcSkill'">
+                        <div *ngIf="typeToEdit === 'kbcSkills'">
                             <div formArrayName="kbcSkills"
                                 *ngFor="let skill of kbcSkillControls; let i = index">
                                 <div [formGroupName]="i" class="example-section">     
@@ -161,6 +167,9 @@
                                         </mat-select>
                                         <mat-error *ngIf="skill.get('skillName').hasError('required') && skill.get('skillName').touched">
                                             Please select a KBC skill    
+                                        </mat-error>
+                                        <mat-error *ngIf="skill.get('skillName').hasError('duplicateValue') && skill.get('skillName').touched">
+                                            You have selected a duplicate skill    
                                         </mat-error>
                                     </mat-form-field>
                                     <button mat-mini-fab

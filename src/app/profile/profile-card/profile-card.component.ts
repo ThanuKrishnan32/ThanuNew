@@ -5,6 +5,7 @@ import { Skill } from 'src/app/shared/skill.model';
 import { Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { ChartModel } from 'src/app/shared/ChartModel.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-card',
@@ -32,7 +33,7 @@ export class ProfileCardComponent implements OnInit {
   userSkillsArray: Skill[] = [];
   chartOptions: {};
   maxSkillValue: number = 8;
-  maxChartWidth: number = 325;
+  maxChartWidth: number = 300;
   maxChartHeight: number = 250;
   chartData : ChartModel[] = [];
   qpVariable : string;
@@ -59,7 +60,7 @@ export class ProfileCardComponent implements OnInit {
           }else{
             this.fillArray(this.userGenericSkills);
           };  
-          this.qpVariable = 'genericSkill';
+          this.qpVariable = 'genericSkills';
           this.chartTitleText = 'Your General Skills';
           this.chartCategory = 'General';
           this.cardSubtitle = '(example: Angular, Javascript, Cobol, DB2 etc.,)';
@@ -73,7 +74,7 @@ export class ProfileCardComponent implements OnInit {
           }else{
             this.fillArray(this.userDomainSkills);
           };  
-          this.qpVariable = 'domainSkill';
+          this.qpVariable = 'domainSkills';
           this.chartTitleText = 'Your Domain Skills';
           this.chartCategory = 'Domain';
           this.cardSubtitle = '(example: Cards, payments, Life Insurance etc.,)';
@@ -87,10 +88,10 @@ export class ProfileCardComponent implements OnInit {
           }else{
             this.fillArray(this.userKbcSkills);  
           };
-          this.qpVariable = 'kbcSkill';
+          this.qpVariable = 'kbcSkills';
           this.chartTitleText = 'Your KBC specific Skills';
           this.chartCategory = 'KBC Skills';
-          this.cardSubtitle = '(example: tools like AMB, EGL, IDZ, Confluence etc.,)'
+          this.cardSubtitle = '(example: tools like AMB, EGL, IDZ, TOPAZ etc.,)'
           this.userSkillsArray = this.userKbcSkills;
           this.createSkillsChart();
           break;
@@ -120,9 +121,9 @@ fillArray(array : Skill[]){
 createSkillsChart(){
  this.chartOptions = {
    chart: {
-       type: 'bar',
-       width: this.maxChartWidth,
-       height: this.maxChartHeight
+       type: 'bar'
+      //  width: this.maxChartWidth,
+      //  height: this.maxChartHeight
    },
    title: {
        text: this.chartTitleText
@@ -158,8 +159,24 @@ createSkillsChart(){
    credits: {
        enabled: false
    },
+   responsive: {  
+    rules: [{  
+      condition: {  
+        maxWidth: 500  
+      },  
+      chartOptions: {  
+        chart: {
+           width: this.maxChartWidth,
+           height: this.maxChartHeight
+      }  
+      }  
+    }]  
+  },
    series: this.chartData
  }
 }
 
+onComment(form: NgForm){
+  console.log(form.value.inputText);
+}
 }

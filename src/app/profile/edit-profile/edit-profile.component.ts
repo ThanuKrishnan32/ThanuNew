@@ -7,7 +7,6 @@ import { Skill } from 'src/app/shared/skill.model';
 import { AvailableSkill } from 'src/app/shared/availableSkill.model';
 import { DialogComponent } from '../../shared/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { error } from '@angular/compiler/src/util';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
@@ -36,13 +35,15 @@ export class EditProfileComponent implements OnInit {
   userGenericSkills: Skill[];
   userDomainSkills: Skill[];
   userKbcSkills: Skill[];
+  inputSkillArray: Skill[];
 
   inputId: number;
   maxSkillValue: number = 8;
-  typeToEdit: String;
+  typeToEdit: string;
   availableGenericSkills: AvailableSkill[];
   availableDomainSkills: AvailableSkill[];
   availableKbcSkills: AvailableSkill[];
+  domLoaded: boolean = false;
 
   constructor(private dataStorageService: DataStorage,
               private fb: FormBuilder,
@@ -70,7 +71,8 @@ export class EditProfileComponent implements OnInit {
           this.userGenericSkills = this.userData.genericSkills;
           this.userDomainSkills = this.userData.domainSkills;
           this.userKbcSkills = this.userData.kbcSkills;
-          this.setForm(); 
+          this.setForm();
+          this.domLoaded = true;
             }
     );
     this.dataStorageService.getTeams().subscribe(teams=>{
@@ -154,7 +156,7 @@ export class EditProfileComponent implements OnInit {
 
   private initSkillArray(): FormGroup{
     return new FormGroup({
-      skillName: new FormControl('',[Validators.required]),
+      skillName: new FormControl('',[Validators.required,this.duplicateSkillCheck.bind(this)]),
       skillLevel: new FormControl('',[Validators.required])
       })
   }
@@ -192,6 +194,24 @@ export class EditProfileComponent implements OnInit {
 
   openBottomLegendSheet(): void{
     this.bottomSheet.open(BottomSheetLegendComponent);
+  }
+  
+  duplicateSkillCheck(control : FormControl): {[s: string]: boolean} {
+      if (this.domLoaded){
+        this.inputSkillArray = this.profileForm.get(this.typeToEdit).value;
+      }else{
+        this.inputSkillArray = [];
+      }
+      if(this.inputSkillArray.length > 1){
+        let test = this.inputSkillArray.find(data => data.skillName === control.value);
+        if (test){
+          return {'duplicateValue': true}
+        } else {
+          return null;
+        } 
+      }else{
+        return null;
+      }
   }
 
   onSubmit(){

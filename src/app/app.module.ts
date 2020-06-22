@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DialogErrorComponent } from './shared/dialog-error.component';
 import { BottomSheetLegendComponent } from './shared/bottomsheet-legend.component';
 import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
+import { AdminComponent } from './admin/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProfileCardComponent } from './profile/profile-card/profile-card.compon
     ActiveProfileComponent,
     DialogComponent,
     BottomSheetLegendComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

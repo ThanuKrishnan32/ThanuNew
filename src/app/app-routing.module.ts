@@ -5,11 +5,13 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { ProfileGuard } from './profile/profile.guard';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { AdminComponent } from './admin/admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path:'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent},
+  { path: 'admin', component: AdminComponent},
   { path: 'profile/:id', component: ProfileComponent, canActivate :[ProfileGuard]},
   { path: 'profile/:id/edit', component: EditProfileComponent, canActivate :[ProfileGuard]},
 ];

@@ -20,6 +20,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatSliderModule,
     MatTooltipModule,
     HighchartsChartModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatExpansionModule,
+    TextFieldModule
   ],
   exports : [MatMenuModule,
              MatButtonModule,
@@ -66,6 +70,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
              MatSliderModule,
              MatTooltipModule,
              HighchartsChartModule,
-             MatBottomSheetModule]
+             MatBottomSheetModule,
+             MatExpansionModule,
+             TextFieldModule]
 })
 export class MaterialModule { }
