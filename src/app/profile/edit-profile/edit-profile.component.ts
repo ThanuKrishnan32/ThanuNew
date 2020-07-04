@@ -1,15 +1,15 @@
+import { ActivatedRoute, Params } from '@angular/router';
+import { AvailableSkill } from 'src/app/shared/availableSkill.model';
+import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { User } from 'src/app/shared/user.model';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
-import { teams } from 'src/app/shared/teams.model';
-import { Skill } from 'src/app/shared/skill.model';
-import { AvailableSkill } from 'src/app/shared/availableSkill.model';
 import { DialogComponent } from '../../shared/dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Skill } from 'src/app/shared/skill.model';
+import { teams } from 'src/app/shared/teams.model';
+import { User } from 'src/app/shared/user.model';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,9 +25,9 @@ export class EditProfileComponent implements OnInit {
     firstName: " ",
     lastName: " ",
     team: " ",
-    genericSkills: [],
-    domainSkills: [],
-    kbcSkills: []
+    genericSkills: [] = [],
+    domainSkills: [] = [],
+    kbcSkills: [] = []
   }
 
   profileForm: FormGroup;
@@ -47,26 +47,25 @@ export class EditProfileComponent implements OnInit {
 
   constructor(private dataStorageService: DataStorage,
               private fb: FormBuilder,
-              private router: Router,
-              public dialog: MatDialog,
+              private dialog: MatDialog,
               private activatedRoute: ActivatedRoute,
               private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.initForm();
     this.activatedRoute.params.subscribe(
-      (params : Params)=>{
+      (params : Params) => {
         this.inputId = +params['id'];
       } 
     );
     this.activatedRoute.queryParams.subscribe(
-      (params : Params)=>{
+      (params : Params) => {
         this.typeToEdit = params['skill'];
       } 
     );
     this.dataStorageService.getUser(this.inputId);
     this.dataStorageService.loggedInUser.subscribe(
-      users=>{
+      users => {
           this.userData = users;
           this.userGenericSkills = this.userData.genericSkills;
           this.userDomainSkills = this.userData.domainSkills;
@@ -75,27 +74,27 @@ export class EditProfileComponent implements OnInit {
           this.domLoaded = true;
             }
     );
-    this.dataStorageService.getTeams().subscribe(teams=>{
+    this.dataStorageService.getTeams().subscribe(teams => {
       this.availableTeams = teams
     });  
-    this.dataStorageService.getGenericSkills().subscribe(skills=>{
+    this.dataStorageService.getGenericSkills().subscribe(skills => {
       this.availableGenericSkills = skills;
     });
-    this.dataStorageService.getDomainSkills().subscribe(skills=>{
+    this.dataStorageService.getDomainSkills().subscribe(skills => {
       this.availableDomainSkills = skills;
     });
-    this.dataStorageService.getKbcSkills().subscribe(skills=>{
+    this.dataStorageService.getKbcSkills().subscribe(skills => {
       this.availableKbcSkills = skills;
     });
   }  
 
-  onAddGenericSkill(){
+  public onAddGenericSkill() {
     (<FormArray>this.profileForm.get('genericSkills')).push(this.initSkillArray());
   }
-  onAddDomainSkill(){
+  public onAddDomainSkill() {
     (<FormArray>this.profileForm.get('domainSkills')).push(this.initSkillArray());
   }
-  onAddKbcSkill(){
+  public onAddKbcSkill() {
     (<FormArray>this.profileForm.get('kbcSkills')).push(this.initSkillArray());
   }
 
@@ -109,35 +108,35 @@ export class EditProfileComponent implements OnInit {
     return (<FormArray>this.profileForm.get('kbcSkills')).controls;
   }
 
-  get f(){
+  get f() {
     return this.profileForm.controls;
   }
 
-  get sGenericFArray(){
+  get sGenericFArray() {
     return <FormArray>this.profileForm.get('genericSkills')
   }
 
-  removeGenericFormSkill(Arrayindex: number){
+  public removeGenericFormSkill(Arrayindex: number) {
     (<FormArray>this.profileForm.get('genericSkills')).removeAt(Arrayindex);
   }
 
 
-  get sDomainFArray(){
+  get sDomainFArray() {
     return <FormArray>this.profileForm.get('domainSkills')
   }
 
-  removeDomainFormSkill(Arrayindex: number){
+  public removeDomainFormSkill(Arrayindex: number) {
     (<FormArray>this.profileForm.get('domainSkills')).removeAt(Arrayindex);
   }
-  get sKbcFArray(){
+  get sKbcFArray() {
     return <FormArray>this.profileForm.get('kbcSkills')
   }
 
-  removeKbcFormSkill(Arrayindex: number){
+  public removeKbcFormSkill(Arrayindex: number) {
     (<FormArray>this.profileForm.get('kbcSkills')).removeAt(Arrayindex);
   }
 
-  private initForm(){
+  public initForm() {
 
     this.profileForm = new FormGroup(
       {
@@ -154,14 +153,14 @@ export class EditProfileComponent implements OnInit {
     );
   }
 
-  private initSkillArray(): FormGroup{
+  public initSkillArray(): FormGroup {
     return new FormGroup({
       skillName: new FormControl('',[Validators.required,this.duplicateSkillCheck.bind(this)]),
       skillLevel: new FormControl('',[Validators.required])
       })
   }
 
-  private setForm(){
+  public setForm(){
 
     this.profileForm.patchValue({
       id: this.userData.id,
@@ -177,7 +176,7 @@ export class EditProfileComponent implements OnInit {
     this.profileForm.setControl('kbcSkills', this.setUserSkills(this.userData.kbcSkills));
   }
 
-  private setUserSkills(skills: Skill[]): FormArray{
+  public setUserSkills(skills: Skill[]): FormArray {
      const skillArray = new FormArray([]);
      if(skills){
      skills.forEach(
@@ -192,33 +191,33 @@ export class EditProfileComponent implements OnInit {
      return skillArray; 
   }
 
-  openBottomLegendSheet(): void{
+  public openBottomLegendSheet(): void {
     this.bottomSheet.open(BottomSheetLegendComponent);
   }
   
-  duplicateSkillCheck(control : FormControl): {[s: string]: boolean} {
-      if (this.domLoaded){
+  public duplicateSkillCheck(control : FormControl): {[s: string]: boolean} {
+      if (this.domLoaded) {
         this.inputSkillArray = this.profileForm.get(this.typeToEdit).value;
-      }else{
+      } else {
         this.inputSkillArray = [];
       }
-      if(this.inputSkillArray.length > 1){
+      if(this.inputSkillArray.length > 1) {
         let test = this.inputSkillArray.find(data => data.skillName === control.value);
-        if (test){
+        if (test) {
           return {'duplicateValue': true}
         } else {
           return null;
         } 
-      }else{
+      } else {
         return null;
       }
   }
 
-  onSubmit(){
+  public onSubmit() {
     const dialogref = this.dialog.open(DialogComponent);
     dialogref.afterClosed().subscribe(
-      userchoice=>{
-        if(userchoice === true){
+      userchoice => {
+        if(userchoice === true) {
           this.userData = this.profileForm.value;
           this.dataStorageService.editUser(this.userData,this.userData.id); 
         }

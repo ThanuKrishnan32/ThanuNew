@@ -16,30 +16,30 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.datastorageService.isAuth.subscribe(
-      isloggedIn =>{
+      isloggedIn => {
         this.loggedInUser = isloggedIn;
       }
     )
     this.datastorageService.loggedInUser.subscribe(
-      user=>{
+      user => {
           this.loggedInUserId = user.id;
       }
     )
   }
 
-  onClick(){
+ public onClick() {
     this.sideNavToggle.emit();
   }
 
-  onProfileClick(){
-    if(this.loggedInUserId === undefined){
+ public onProfileClick() {
+    if(this.loggedInUserId === undefined) {
       this.router.navigate(['/login']);
-    }else{
+    }else { 
       this.router.navigate(['/profile',this.loggedInUserId]);
     }
   }
 
-  onLogOut(){
+ public onLogOut() {
     this.datastorageService.logout();
   }
 }

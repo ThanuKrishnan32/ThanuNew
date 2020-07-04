@@ -1,45 +1,44 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SidenavComponent } from './navigation/sidenav/sidenav.component';
-import { HeaderComponent } from './navigation/header/header.component';
-import { ProfileComponent } from './profile/profile/profile.component';
-import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { ActiveProfileComponent } from './profile/active-profile/active-profile.component';
-import { DialogComponent } from './shared/dialog.component';
-import { HttpClientModule } from '@angular/common/http';
-import { DialogErrorComponent } from './shared/dialog-error.component';
-import { BottomSheetLegendComponent } from './shared/bottomsheet-legend.component';
-import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
 import { AdminComponent } from './admin/admin/admin.component';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BottomSheetLegendComponent } from './shared/bottomsheet-legend.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { DialogComponent } from './shared/dialog.component';
+import { DialogErrorComponent } from './shared/dialog-error.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './auth/login/login.component';
+import { MaterialModule } from './material/material.module';
+import { NgModule } from '@angular/core';
+import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
+import { ProfileComponent } from './profile/profile/profile.component';
+import { SidenavComponent } from './navigation/sidenav/sidenav.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    SidenavComponent,
-    HeaderComponent,
-    ProfileComponent,
-    EditProfileComponent,
     ActiveProfileComponent,
-    DialogComponent,
+    AdminComponent,
+    AppComponent,
     BottomSheetLegendComponent,
+    DialogComponent,
+    EditProfileComponent,
+    HeaderComponent,
+    LoginComponent,
     ProfileCardComponent,
-    AdminComponent
+    ProfileComponent,
+    SidenavComponent,
+    SignupComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    HttpClientModule,
     MaterialModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

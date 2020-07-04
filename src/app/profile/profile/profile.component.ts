@@ -1,6 +1,6 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
-      (params : Params)=>{
+      (params : Params) => {
         this.inputId = +params['id'];
       } 
     );

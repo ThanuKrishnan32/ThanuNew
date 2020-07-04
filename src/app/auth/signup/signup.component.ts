@@ -1,11 +1,12 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../../shared/dialog.component';
+import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { DialogComponent } from '../../shared/dialog.component';
+import { DialogErrorComponent } from 'src/app/shared/dialog-error.component';
+import { Errors } from 'src/app/constants/errors';
+import { MatDialog } from '@angular/material/dialog';
+import { NgForm } from '@angular/forms';
 import { teams } from 'src/app/shared/teams.model';
 import { User } from 'src/app/shared/user.model';
-import { DialogErrorComponent } from 'src/app/shared/dialog-error.component';
 
 @Component({
   selector: 'app-signup',
@@ -28,24 +29,24 @@ export class SignupComponent implements OnInit {
       this.availableTeams = teams
     })
     this.dataStorageService.getUsers().subscribe(
-      users =>{
+      users => {
         this.userArray = users;
       }
     )
   }
 
-  onSubmit(form: NgForm){
+ public onSubmit(form: NgForm){
     const dialogref = this.dialog.open(DialogComponent);
     dialogref.afterClosed().subscribe(
-      userchoice=>{
-        if(userchoice === true){
+      userchoice => {
+        if(userchoice === true) {
           this.userData = form.value;
           this.userCheckData = this.userArray.find(loginUser => loginUser.userId === this.userData.userId )
-          if(this.userCheckData){
+          if(this.userCheckData) {
             const dialogref = this.dialog.open(DialogErrorComponent,{
-              data:{error:'UserID already exists could you please check?'}
+              data:{error:Errors.uidalreadyexists}
               });
-          }else{
+          }else {
             this.dataStorageService.signupUser(this.userData);
           } 
         }

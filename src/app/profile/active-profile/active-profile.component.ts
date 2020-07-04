@@ -1,9 +1,8 @@
+import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { User } from 'src/app/shared/user.model';
-import { Router } from '@angular/router';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
+import { User } from 'src/app/shared/user.model';
 
 @Component({
   selector: 'app-active-profile',
@@ -28,7 +27,6 @@ export class ActiveProfileComponent implements OnInit {
                            "KBC Skills"];
    
   constructor(private datastorageService: DataStorage,
-              private router: Router,
               private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
@@ -39,7 +37,7 @@ export class ActiveProfileComponent implements OnInit {
        );
   }
 
-  openBottomLegendSheet(): void{
+ public openBottomLegendSheet(): void {
     this.bottomSheet.open(BottomSheetLegendComponent);
   }
 }

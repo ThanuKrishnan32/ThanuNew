@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { teams } from './teams.model';
-import { User } from './user.model';
-import { MatDialog } from '@angular/material/dialog';
+import { AvailableSkill } from './availableSkill.model';
 import { DialogErrorComponent } from './dialog-error.component';
+import { Errors } from '../constants/errors';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { AvailableSkill } from './availableSkill.model';
+import { teams } from './teams.model';
+import { User } from './user.model';
 
-@Injectable({providedIn:'root'})
+@Injectable({ providedIn:'root' })
 
-export class DataStorage{
+export class DataStorage {
     teamsUrl = "http://localhost:3000/teams";
     usersUrl = "http://localhost:3000/users";
     genericSkillsUrl = "http://localhost:3000/genericskills";
@@ -30,25 +31,25 @@ export class DataStorage{
                 public dialog: MatDialog){}
 
 
-    getTeams(){
+    public getTeams() {
         return this.httpClient.get<teams[]>(this.teamsUrl);
     }
-    getUsers(){
+    public getUsers() {
         return this.httpClient.get<User[]>(this.usersUrl);
     }
-    getGenericSkills(){
+    public getGenericSkills() {
         return this.httpClient.get<AvailableSkill[]>(this.genericSkillsUrl);
     }
-    getDomainSkills(){
+    public getDomainSkills() {
         return this.httpClient.get<AvailableSkill[]>(this.domainSkillsUrl);
     }
-    getKbcSkills(){
+    public getKbcSkills() {
         return this.httpClient.get<AvailableSkill[]>(this.kbcSkillsUrl);
     }
 
-    loginUser(userId: string, password: string){
+    public loginUser(userId: string, password: string) {
         this.httpClient.get<User[]>(this.usersUrl).subscribe(
-            users =>{
+            users => {
                 this.userArray = users;
                 this.userData = this.userArray.find(loginUser => loginUser.userId === userId )
                 if(this.userData?.password){
@@ -57,30 +58,30 @@ export class DataStorage{
                         if(this.userData.userId === "ADMINE"){
                             this.router.navigate(['/admin']);
                             this.isAuth.next(true);
-                        }else{    
+                        }else {     
                             this.router.navigate(['/profile',this.userData.id]);
                             this.isAuth.next(true);
                         }
-                    }else{
+                    }else {
                         const dialogref = this.dialog.open(DialogErrorComponent,{
-                            data:{error:'Could you please check your Username and password ?'}
+                            data:{error:Errors.checkunamepwd}
                         });
                     }
-                }else{
+                }else {
                     const dialogref = this.dialog.open(DialogErrorComponent,{
-                        data:{error:"Are you sure you are signedup user? The username/password doesn't seem right"}
+                        data:{error:Errors.checkunamepwd}
                     });
                 }
-             (error)=>{
+             (error) => {
                  console.log(error)
              }   
             }
         );                                   
     }
 
-    signupUser(user: User) {    
+    public signupUser(user: User) {    
             this.httpClient.post<User>(this.usersUrl,user).subscribe(
-                        signup=>{
+                        signup => {
                            this.userData = signup;  
                            this.loggedInUser.next(this.userData);                 
                            this.router.navigate(['/profile',this.userData.id]); 
@@ -89,7 +90,7 @@ export class DataStorage{
                     );
     }
 
-    checkAuth(){
+    public checkAuth(){
         if(this.userData === undefined){
             return false
         }else{
@@ -97,16 +98,16 @@ export class DataStorage{
         }
     }
 
-    getUser(id: number){
+    public getUser(id: number){
         this.httpClient.get<User>(this.usersUrl + '/' + id).subscribe(
-            user=>{ this.userData = user
+            user => { this.userData = user
                     this.loggedInUser.next(this.userData);
                     this.isAuth.next(true);
                   }  
           );
     }
 
-    editUser(user: User,id: number){
+    public editUser(user: User,id: number){
         this.httpClient.put<User>(this.usersUrl + '/' + id,user).subscribe(
             editedUser => {this.userData = editedUser
                      this.loggedInUser.next(this.userData);
@@ -116,7 +117,7 @@ export class DataStorage{
         )
     }
 
-    logout(){
+    public logout(){
         this.userData.id = undefined;
         this.userData.firstName = undefined;
         this.userData.lastName = undefined;

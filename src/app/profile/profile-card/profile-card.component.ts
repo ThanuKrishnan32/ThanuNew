@@ -1,11 +1,11 @@
+import { ChartModel } from 'src/app/shared/ChartModel.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { User } from 'src/app/shared/user.model';
-import { Skill } from 'src/app/shared/skill.model';
-import { Router } from '@angular/router';
-import * as Highcharts from 'highcharts';
-import { ChartModel } from 'src/app/shared/ChartModel.model';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Skill } from 'src/app/shared/skill.model';
+import { User } from 'src/app/shared/user.model';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-profile-card',
@@ -22,9 +22,9 @@ export class ProfileCardComponent implements OnInit {
     firstName: " ",
     lastName: " ",
     team: " ",
-    genericSkills: [],
-    domainSkills: [],
-    kbcSkills: []
+    genericSkills: [] = [],
+    domainSkills: [] = [],
+    kbcSkills: [] = []
   }
   userName : String;
   userGenericSkills: Skill[] = [];
@@ -48,16 +48,16 @@ export class ProfileCardComponent implements OnInit {
 
   ngOnInit() { 
     this.datastorageService.loggedInUser.subscribe(
-    users=>{
+    users => {
       this.userData = users;
       this.userGenericSkills = this.userData.genericSkills;
       this.userDomainSkills = this.userData.domainSkills;
       this.userKbcSkills = this.userData.kbcSkills;
-      switch (this.inputSkillType){
+      switch (this.inputSkillType) {
         case 'Generic Skills': {
           if(this.userGenericSkills === undefined){
             this.chartData = [];
-          }else{
+          } else {
             this.fillArray(this.userGenericSkills);
           };  
           this.qpVariable = 'genericSkills';
@@ -69,9 +69,9 @@ export class ProfileCardComponent implements OnInit {
           break;
         }
         case 'Domain Skills': {
-          if(this.userDomainSkills === undefined){
+          if(this.userDomainSkills === undefined) {
             this.chartData = [];
-          }else{
+          } else {
             this.fillArray(this.userDomainSkills);
           };  
           this.qpVariable = 'domainSkills';
@@ -83,9 +83,9 @@ export class ProfileCardComponent implements OnInit {
           break;
         }
         case 'KBC Skills': {
-          if(this.userKbcSkills === undefined){
+          if(this.userKbcSkills === undefined) {
             this.chartData = [];
-          }else{
+          } else {
             this.fillArray(this.userKbcSkills);  
           };
           this.qpVariable = 'kbcSkills';
@@ -102,14 +102,14 @@ export class ProfileCardComponent implements OnInit {
 
   }
 
-onEditClick(toeditSkill : String){
+public onEditClick(toeditSkill : String) {
     this.router.navigate(['/profile',this.userData.id,'edit'],{ queryParams: { skill: toeditSkill}})
 }
 
-fillArray(array : Skill[]){
+public fillArray(array : Skill[]) {
  this.chartData = [];
  array.forEach(
-   skill =>{
+   skill => {
      this.chartData.push({
        name : skill.skillName,
        data : [Number(skill.skillLevel)] as any
@@ -118,7 +118,7 @@ fillArray(array : Skill[]){
  ); 
 }
 
-createSkillsChart(){
+public createSkillsChart() {
  this.chartOptions = {
    chart: {
        type: 'bar'
@@ -176,7 +176,7 @@ createSkillsChart(){
  }
 }
 
-onComment(form: NgForm){
+public onComment(form: NgForm) {
   console.log(form.value.inputText);
 }
 }

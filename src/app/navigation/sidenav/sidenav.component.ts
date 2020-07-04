@@ -27,11 +27,11 @@ export class SidenavComponent implements OnInit {
     )
   }
 
-  onClick(){
+ public onClick() {
     this.sideNavclose.emit();
   }
 
-  onProfileClick(){
+ public onProfileClick() {
     this.sideNavclose.emit();
     if(this.loggedInUserId === undefined){
       this.router.navigate(['/login']);
@@ -40,7 +40,7 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  onLogoutClick(){
+ public onLogoutClick() {
     this.sideNavclose.emit();
     this.datastorageService.logout();
   }
