@@ -1,8 +1,9 @@
-import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet-legend.component';
+import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet/bottomsheet-legend.component';
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { User } from 'src/app/shared/user.model';
+import { User } from 'src/app/shared/models/user.model';
+import { Variables } from 'src/app/constants/variables';
 
 @Component({
   selector: 'app-active-profile',
@@ -13,18 +14,18 @@ export class ActiveProfileComponent implements OnInit {
 
   userData : User = {
     id: 0,
-    userId: " ",
-    password: " ",
-    firstName: " ",
-    lastName: " ",
-    team: " ",
-    genericSkills: [],
-    domainSkills: [],
-    kbcSkills: []
+    userId: Variables.emptyString,
+    password: Variables.emptyString,
+    firstName: Variables.emptyString,
+    lastName: Variables.emptyString,
+    team: Variables.emptyString,
+    genericSkills: [] = [],
+    domainSkills: [] = [],
+    kbcSkills: [] = []
   };
-  skillTypes : string[] = ["Generic Skills",
-                           "Domain Skills",
-                           "KBC Skills"];
+  skillTypes : string[] = [Variables.generalSkill,
+                           Variables.domainSkill,
+                           Variables.kbcSkill];
    
   constructor(private datastorageService: DataStorage,
               private bottomSheet: MatBottomSheet) { }

@@ -12,9 +12,9 @@
          fxLayoutAlign="flex-end" 
          fxLayoutGap="10px"
          fxHide.xs>
-        <a routerLink="/login" style="cursor: pointer;" *ngIf="loggedInUser === false">Login</a>
-        <a routerLink="/signup" style="cursor: pointer;" *ngIf="loggedInUser === false">Signup</a>
-        <a (click)="onProfileClick()" style="cursor: pointer;" *ngIf="loggedInUser === true">Your Profile</a>
+        <a (click) = "onLoginClick()" style="cursor: pointer;" *ngIf="loggedInUser === false">Login</a>
+        <a (click) = "onSignupClick()" style="cursor: pointer;" *ngIf="loggedInUser === false">Signup</a>
+        <a (click) = "onProfileClick()" style="cursor: pointer;" *ngIf="loggedInUser === true">Your Profile</a>
         <a *ngIf="loggedInUser === true" style="cursor: pointer;" (click)="onLogOut()">Logout</a>
     </div>
 </mat-toolbar>

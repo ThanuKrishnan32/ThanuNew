@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { Paths } from 'src/app/constants/paths';
 import { Router } from '@angular/router';
 
 @Component({
@@ -34,9 +35,9 @@ export class SidenavComponent implements OnInit {
  public onProfileClick() {
     this.sideNavclose.emit();
     if(this.loggedInUserId === undefined){
-      this.router.navigate(['/login']);
+      this.router.navigate(['/' + Paths.Login]);
     }else{
-      this.router.navigate(['/profile',this.loggedInUserId]);
+      this.router.navigate(['/' + Paths.Profile,this.loggedInUserId]);
     }
   }
 

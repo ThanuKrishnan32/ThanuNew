@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
@@ -7,6 +6,8 @@ import {
 } from '@angular/router';
 
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { Injectable } from '@angular/core';
+import { Paths } from '../constants/paths';
 
 @Injectable({providedIn: 'root'})
 export class ProfileGuard implements CanActivate {
@@ -16,7 +17,7 @@ export class ProfileGuard implements CanActivate {
     if(this.datastorageService.checkAuth()){
       return true;
     }else{
-      this.router.navigate(['/login']);
+      this.router.navigate(['/' + Paths.Login]);
     }
       
   }

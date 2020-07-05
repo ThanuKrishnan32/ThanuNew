@@ -1,10 +1,13 @@
-import { ChartModel } from 'src/app/shared/ChartModel.model';
+import { ChartModel } from 'src/app/shared/models/ChartModel.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
 import { NgForm } from '@angular/forms';
+import { Paths } from 'src/app/constants/paths';
+import { ProfileCard } from 'src/app/constants/profileCardConstant';
 import { Router } from '@angular/router';
-import { Skill } from 'src/app/shared/skill.model';
-import { User } from 'src/app/shared/user.model';
+import { Skill } from 'src/app/shared/models/skill.model';
+import { User } from 'src/app/shared/models/user.model';
+import { Variables } from 'src/app/constants/variables';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -17,11 +20,11 @@ export class ProfileCardComponent implements OnInit {
 
   userData : User = {
     id: 0,
-    userId: " ",
-    password: " ",
-    firstName: " ",
-    lastName: " ",
-    team: " ",
+    userId: Variables.emptyString,
+    password: Variables.emptyString,
+    firstName: Variables.emptyString,
+    lastName: Variables.emptyString,
+    team: Variables.emptyString,
     genericSkills: [] = [],
     domainSkills: [] = [],
     kbcSkills: [] = []
@@ -54,44 +57,44 @@ export class ProfileCardComponent implements OnInit {
       this.userDomainSkills = this.userData.domainSkills;
       this.userKbcSkills = this.userData.kbcSkills;
       switch (this.inputSkillType) {
-        case 'Generic Skills': {
+        case ProfileCard.caseGS: {
           if(this.userGenericSkills === undefined){
             this.chartData = [];
           } else {
             this.fillArray(this.userGenericSkills);
           };  
-          this.qpVariable = 'genericSkills';
-          this.chartTitleText = 'Your General Skills';
-          this.chartCategory = 'General';
-          this.cardSubtitle = '(example: Angular, Javascript, Cobol, DB2 etc.,)';
+          this.qpVariable = ProfileCard.qpVGS;
+          this.chartTitleText = ProfileCard.cttGS;
+          this.chartCategory = ProfileCard.ccGS;
+          this.cardSubtitle = ProfileCard.csGS;
           this.userSkillsArray = this.userGenericSkills;
           this.createSkillsChart();
           break;
         }
-        case 'Domain Skills': {
+        case ProfileCard.caseDS: {
           if(this.userDomainSkills === undefined) {
             this.chartData = [];
           } else {
             this.fillArray(this.userDomainSkills);
           };  
-          this.qpVariable = 'domainSkills';
-          this.chartTitleText = 'Your Domain Skills';
-          this.chartCategory = 'Domain';
-          this.cardSubtitle = '(example: Cards, payments, Life Insurance etc.,)';
+          this.qpVariable = ProfileCard.qpVDS;
+          this.chartTitleText = ProfileCard.cttDS;
+          this.chartCategory = ProfileCard.ccDS;
+          this.cardSubtitle = ProfileCard.csDS;
           this.userSkillsArray = this.userDomainSkills;
           this.createSkillsChart();
           break;
         }
-        case 'KBC Skills': {
+        case ProfileCard.caseKS: {
           if(this.userKbcSkills === undefined) {
             this.chartData = [];
           } else {
             this.fillArray(this.userKbcSkills);  
           };
-          this.qpVariable = 'kbcSkills';
-          this.chartTitleText = 'Your KBC specific Skills';
-          this.chartCategory = 'KBC Skills';
-          this.cardSubtitle = '(example: tools like AMB, EGL, IDZ, TOPAZ etc.,)'
+          this.qpVariable = ProfileCard.qpVKS;
+          this.chartTitleText = ProfileCard.cttKS;
+          this.chartCategory = ProfileCard.ccKS;
+          this.cardSubtitle = ProfileCard.csKS
           this.userSkillsArray = this.userKbcSkills;
           this.createSkillsChart();
           break;
@@ -103,7 +106,7 @@ export class ProfileCardComponent implements OnInit {
   }
 
 public onEditClick(toeditSkill : String) {
-    this.router.navigate(['/profile',this.userData.id,'edit'],{ queryParams: { skill: toeditSkill}})
+    this.router.navigate(['/' + Paths.Profile,this.userData.id,Paths.Edit],{ queryParams: { skill: toeditSkill}})
 }
 
 public fillArray(array : Skill[]) {
@@ -121,7 +124,7 @@ public fillArray(array : Skill[]) {
 public createSkillsChart() {
  this.chartOptions = {
    chart: {
-       type: 'bar'
+       type: ProfileCard.chartType
       //  width: this.maxChartWidth,
       //  height: this.maxChartHeight
    },
@@ -139,11 +142,11 @@ public createSkillsChart() {
        max: this.maxSkillValue,
        tickInterval: 1,
        title: {
-           text: 'Skill Level',
-           align: 'high'
+           text: ProfileCard.titleText,
+           align: ProfileCard.titleAlign
        },
        labels: {
-           overflow: 'justify'
+           overflow: ProfileCard.labelOverFlow
        }
    },
    plotOptions: {

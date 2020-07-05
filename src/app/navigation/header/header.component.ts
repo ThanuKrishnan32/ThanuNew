@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { Paths } from 'src/app/constants/paths';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,11 +34,19 @@ export class HeaderComponent implements OnInit {
 
  public onProfileClick() {
     if(this.loggedInUserId === undefined) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/' + Paths.Login]);
     }else { 
-      this.router.navigate(['/profile',this.loggedInUserId]);
+      this.router.navigate(['/' + Paths.Profile,this.loggedInUserId]);
     }
   }
+
+ public onLoginClick() {
+    this.router.navigate(['/' + Paths.Login]);
+ } 
+
+ public onSignupClick() {
+  this.router.navigate(['/' + Paths.Signup]);
+ }
 
  public onLogOut() {
     this.datastorageService.logout();

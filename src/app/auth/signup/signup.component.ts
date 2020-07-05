@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { DialogComponent } from '../../shared/dialog.component';
-import { DialogErrorComponent } from 'src/app/shared/dialog-error.component';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { DialogErrorComponent } from 'src/app/shared/dialogerror/dialog-error.component';
 import { Errors } from 'src/app/constants/errors';
 import { MatDialog } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
-import { teams } from 'src/app/shared/teams.model';
-import { User } from 'src/app/shared/user.model';
+import { teams } from 'src/app/shared/models/teams.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-signup',

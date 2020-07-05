@@ -1,5 +1,5 @@
 import { Component,Inject } from '@angular/core';
-import { DialogErrorData } from './dialogerrordata.model';
+import { DialogErrorData } from '../models/dialogerrordata.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({

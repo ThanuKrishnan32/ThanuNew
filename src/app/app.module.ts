@@ -2,11 +2,11 @@ import { ActiveProfileComponent } from './profile/active-profile/active-profile.
 import { AdminComponent } from './admin/admin/admin.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BottomSheetLegendComponent } from './shared/bottomsheet-legend.component';
+import { BottomSheetLegendComponent } from './shared/bottomsheet/bottomsheet-legend.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { DialogComponent } from './shared/dialog.component';
-import { DialogErrorComponent } from './shared/dialog-error.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { DialogErrorComponent } from './shared/dialogerror/dialog-error.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
