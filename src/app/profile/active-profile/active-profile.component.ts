@@ -12,7 +12,7 @@ import { Variables } from 'src/app/constants/variables';
 })
 export class ActiveProfileComponent implements OnInit {  
 
-  userData : User = {
+  public userData : User = {
     id: 0,
     userId: Variables.emptyString,
     password: Variables.emptyString,
@@ -23,22 +23,22 @@ export class ActiveProfileComponent implements OnInit {
     domainSkills: [] = [],
     kbcSkills: [] = []
   };
-  skillTypes : string[] = [Variables.generalSkill,
-                           Variables.domainSkill,
-                           Variables.kbcSkill];
+  public skillTypes : string[] = [Variables.generalSkill,
+                                  Variables.domainSkill,
+                                  Variables.kbcSkill];
    
-  constructor(private datastorageService: DataStorage,
-              private bottomSheet: MatBottomSheet) { }
+  public constructor(private readonly _datastorageService: DataStorage,
+                     private readonly _bottomSheet: MatBottomSheet) { }
 
-  ngOnInit() {
-       this.datastorageService.loggedInUser.subscribe(
-         users=>{
+  public ngOnInit(): void {
+       this._datastorageService.loggedInUser.subscribe(
+         users => {
            this.userData = users;
          }
        );
   }
 
  public openBottomLegendSheet(): void {
-    this.bottomSheet.open(BottomSheetLegendComponent);
+    this._bottomSheet.open(BottomSheetLegendComponent);
   }
 }

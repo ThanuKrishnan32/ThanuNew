@@ -1,21 +1,22 @@
 <mat-toolbar color="primary" class="shadow">
     <div>
-        <button mat-icon-button (click)="onClick()" style="color: white;" fxHide.gt-xs>
+        <button mat-icon-button (click)="onClick()" class="color-white" fxHide.gt-xs>
             <mat-icon>menu</mat-icon>
         </button>
     </div>
-    <div style="color: white;">
-        <a (click)="onProfileClick()" style="cursor: pointer;">KBC Skill Matrix</a> 
+    <div class="color-white">
+        <a (click)="onProfileClick()" class="cursor-pointer">KBC Skill Matrix</a> 
     </div>
     <div fxFlex 
          fxLayout 
          fxLayoutAlign="flex-end" 
          fxLayoutGap="10px"
-         fxHide.xs>
-        <a (click) = "onLoginClick()" style="cursor: pointer;" *ngIf="loggedInUser === false">Login</a>
-        <a (click) = "onSignupClick()" style="cursor: pointer;" *ngIf="loggedInUser === false">Signup</a>
-        <a (click) = "onProfileClick()" style="cursor: pointer;" *ngIf="loggedInUser === true">Your Profile</a>
-        <a *ngIf="loggedInUser === true" style="cursor: pointer;" (click)="onLogOut()">Logout</a>
+         fxHide.xs
+         >
+        <a (click) = "onLoginClick()" class="cursor-pointer" *ngIf="loggedInUser === false">Login</a>
+        <a (click) = "onSignupClick()" class="cursor-pointer" *ngIf="loggedInUser === false">Signup</a>
+        <a (click) = "onProfileClick()" class="cursor-pointer" *ngIf="loggedInUser === true">Your Profile</a>
+        <a (click) = "onLogOut()" class="cursor-pointer" *ngIf="loggedInUser === true">Logout</a>
     </div>
 </mat-toolbar>
 

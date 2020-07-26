@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
     templateUrl: './dialog-error.component.html',
 })
 export class DialogErrorComponent{
-    constructor(
+    public constructor(
     public dialogRef: MatDialogRef<DialogErrorComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogErrorData) {}
 }

@@ -10,45 +10,45 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() sideNavToggle = new EventEmitter<void>();
-  loggedInUser = false;
-  loggedInUserId: number;
-  constructor( private datastorageService: DataStorage,
-               private router: Router) { }
+  public loggedInUser = false;
+  private loggedInUserId: number;
+  public constructor( private readonly _datastorageService: DataStorage,
+                      private readonly _router: Router) { }
 
-  ngOnInit() {
-    this.datastorageService.isAuth.subscribe(
+  public ngOnInit(): void {
+    this._datastorageService.isAuth.subscribe(
       isloggedIn => {
         this.loggedInUser = isloggedIn;
       }
     )
-    this.datastorageService.loggedInUser.subscribe(
+    this._datastorageService.loggedInUser.subscribe(
       user => {
           this.loggedInUserId = user.id;
       }
     )
   }
 
- public onClick() {
+ public onClick(): void {
     this.sideNavToggle.emit();
   }
 
- public onProfileClick() {
+ public onProfileClick(): void {
     if(this.loggedInUserId === undefined) {
-      this.router.navigate(['/' + Paths.Login]);
+      this._router.navigate(['/' + Paths.Login]);
     }else { 
-      this.router.navigate(['/' + Paths.Profile,this.loggedInUserId]);
+      this._router.navigate(['/' + Paths.Profile,this.loggedInUserId]);
     }
   }
 
- public onLoginClick() {
-    this.router.navigate(['/' + Paths.Login]);
+ public onLoginClick(): void {
+    this._router.navigate(['/' + Paths.Login]);
  } 
 
- public onSignupClick() {
-  this.router.navigate(['/' + Paths.Signup]);
+ public onSignupClick(): void {
+  this._router.navigate(['/' + Paths.Signup]);
  }
 
- public onLogOut() {
-    this.datastorageService.logout();
+ public onLogOut(): void {
+    this._datastorageService.logout();
   }
 }

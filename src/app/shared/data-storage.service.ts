@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, Subject } from 'rxjs';
 import { Paths } from '../constants/paths';
-import { Router, UrlSegment } from '@angular/router';
+import { Router } from '@angular/router';
 import { teams } from './models/teams.model';
 import { Url } from '../constants/urls';
 import { User } from './models/user.model';
@@ -14,8 +14,7 @@ import { User } from './models/user.model';
 @Injectable({ providedIn:'root' })
 
 export class DataStorage {
-
-    firstTime = false;
+    
     users : Observable<any[]>;
     userArray : User[] = [];
     userData: User;
@@ -28,23 +27,23 @@ export class DataStorage {
                 public dialog: MatDialog){}
 
 
-    public getTeams() {
+    public getTeams(): Observable<teams[]> {
         return this.httpClient.get<teams[]>(Url.teamsUrl);
     }
-    public getUsers() {
+    public getUsers(): Observable<User[]> {
         return this.httpClient.get<User[]>(Url.usersUrl);
     }
-    public getGenericSkills() {
+    public getGenericSkills(): Observable<AvailableSkill[]> {
         return this.httpClient.get<AvailableSkill[]>(Url.genericSkillsUrl);
     }
-    public getDomainSkills() {
+    public getDomainSkills(): Observable<AvailableSkill[]> {
         return this.httpClient.get<AvailableSkill[]>(Url.domainSkillsUrl);
     }
-    public getKbcSkills() {
+    public getKbcSkills(): Observable<AvailableSkill[]> {
         return this.httpClient.get<AvailableSkill[]>(Url.kbcSkillsUrl);
     }
 
-    public loginUser(userId: string, password: string) {
+    public loginUser(userId: string, password: string): void {
         this.httpClient.get<User[]>(Url.usersUrl).subscribe(
             users => {
                 this.userArray = users;
@@ -76,7 +75,7 @@ export class DataStorage {
         );                                   
     }
 
-    public signupUser(user: User) {    
+    public signupUser(user: User): void {    
             this.httpClient.post<User>(Url.usersUrl,user).subscribe(
                         signup => {
                            this.userData = signup;  
@@ -87,7 +86,7 @@ export class DataStorage {
                     );
     }
 
-    public checkAuth(){
+    public checkAuth(): boolean{
         if(this.userData === undefined){
             return false
         }else{
@@ -95,7 +94,7 @@ export class DataStorage {
         }
     }
 
-    public getUser(id: number){
+    public getUser(id: number): void{
         this.httpClient.get<User>(Url.usersUrl + '/' + id).subscribe(
             user => { this.userData = user
                     this.loggedInUser.next(this.userData);
@@ -104,7 +103,7 @@ export class DataStorage {
           );
     }
 
-    public editUser(user: User,id: number){
+    public editUser(user: User,id: number): void {
         this.httpClient.put<User>(Url.usersUrl + '/' + id,user).subscribe(
             editedUser => {this.userData = editedUser
                      this.loggedInUser.next(this.userData);
@@ -114,7 +113,7 @@ export class DataStorage {
         )
     }
 
-    public logout(){
+    public logout(): void{
         this.userData.id = undefined;
         this.userData.firstName = undefined;
         this.userData.lastName = undefined;

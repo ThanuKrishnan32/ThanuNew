@@ -18,7 +18,7 @@ import * as Highcharts from 'highcharts';
 export class ProfileCardComponent implements OnInit {
   @Input() inputSkillType: string;
 
-  userData : User = {
+  public userData : User = {
     id: 0,
     userId: Variables.emptyString,
     password: Variables.emptyString,
@@ -29,28 +29,29 @@ export class ProfileCardComponent implements OnInit {
     domainSkills: [] = [],
     kbcSkills: [] = []
   }
-  userName : String;
-  userGenericSkills: Skill[] = [];
-  userDomainSkills: Skill[] = [];
-  userKbcSkills: Skill[] = [];
-  userSkillsArray: Skill[] = [];
-  chartOptions: {};
-  maxSkillValue: number = 8;
-  maxChartWidth: number = 300;
-  maxChartHeight: number = 250;
-  chartData : ChartModel[] = [];
-  qpVariable : string;
-  chartTitleText : string;
-  chartCategory : string;
-  cardSubtitle : string; 
+  public userName : String;
+  public userGenericSkills: Skill[] = [];
+  public userDomainSkills: Skill[] = [];
+  public userKbcSkills: Skill[] = [];
+  public userSkillsArray: Skill[] = [];
+  public chartOptions: {};
+  public maxSkillValue: number = 8;
+  public maxChartWidth: number = 300;
+  public maxChartHeight: number = 250;
+  public chartData : ChartModel[] = [];
+  public qpVariable : string;
+  public chartTitleText : string;
+  public chartCategory : string;
+  public cardSubtitle : string; 
+  public inputText = ' ';
 
-  Highcharts = Highcharts;
+  public Highcharts = Highcharts;
 
-  constructor(private datastorageService: DataStorage,
-              private router: Router) { }
+  public constructor(private _datastorageService: DataStorage,
+                     private _router: Router) { }
 
-  ngOnInit() { 
-    this.datastorageService.loggedInUser.subscribe(
+  public ngOnInit(): void { 
+    this._datastorageService.loggedInUser.subscribe(
     users => {
       this.userData = users;
       this.userGenericSkills = this.userData.genericSkills;
@@ -105,11 +106,11 @@ export class ProfileCardComponent implements OnInit {
 
   }
 
-public onEditClick(toeditSkill : String) {
-    this.router.navigate(['/' + Paths.Profile,this.userData.id,Paths.Edit],{ queryParams: { skill: toeditSkill}})
+public onEditClick(toeditSkill : String): void {
+    this._router.navigate(['/' + Paths.Profile,this.userData.id,Paths.Edit],{ queryParams: { skill: toeditSkill}})
 }
 
-public fillArray(array : Skill[]) {
+public fillArray(array : Skill[]): void {
  this.chartData = [];
  array.forEach(
    skill => {
@@ -121,7 +122,7 @@ public fillArray(array : Skill[]) {
  ); 
 }
 
-public createSkillsChart() {
+public createSkillsChart(): void {
  this.chartOptions = {
    chart: {
        type: ProfileCard.chartType
@@ -179,7 +180,8 @@ public createSkillsChart() {
  }
 }
 
-public onComment(form: NgForm) {
+public onComment(form: NgForm): void {
   console.log(form.value.inputText);
+  this.inputText = ' ';
 }
 }

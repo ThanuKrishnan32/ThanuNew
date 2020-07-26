@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { DialogErrorComponent } from 'src/app/shared/dialogerror/dialog-error.component';
@@ -14,40 +14,42 @@ import { User } from 'src/app/shared/models/user.model';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  availableTeams: teams[];
-  teamPos: String;
-  userData: User;
-  isOk: boolean;
-  userArray : User[];
-  userCheckData: User;
+  public availableTeams: teams[];
+  public teamPos: String;
+  public userData: User;
+  public isOk: boolean;
+  public userArray : User[];
+  public userCheckData: User;
 
-  constructor(public dialog: MatDialog,
-              private dataStorageService: DataStorage) { }
+  @ViewChild('signupForm', { static: true }) signupForm : NgForm;
 
-  ngOnInit(): void {
-    this.dataStorageService.getTeams().subscribe(teams=>{
+  public constructor(public readonly _dialog: MatDialog,
+                     private readonly _dataStorageService: DataStorage) { }
+
+  public ngOnInit(): void {
+    this._dataStorageService.getTeams().subscribe(teams => {
       this.availableTeams = teams
     })
-    this.dataStorageService.getUsers().subscribe(
+    this._dataStorageService.getUsers().subscribe(
       users => {
         this.userArray = users;
       }
     )
   }
 
- public onSubmit(form: NgForm){
-    const dialogref = this.dialog.open(DialogComponent);
-    dialogref.afterClosed().subscribe(
+ public onSubmit(form: NgForm) {
+    const dialogRef = this._dialog.open(DialogComponent);
+    dialogRef.afterClosed().subscribe(
       userchoice => {
         if(userchoice === true) {
           this.userData = form.value;
           this.userCheckData = this.userArray.find(loginUser => loginUser.userId === this.userData.userId )
           if(this.userCheckData) {
-            const dialogref = this.dialog.open(DialogErrorComponent,{
-              data:{error:Errors.uidalreadyexists}
+            const dialogRef = this._dialog.open(DialogErrorComponent, {
+              data: { error : Errors.uidalreadyexists }
               });
-          }else {
-            this.dataStorageService.signupUser(this.userData);
+          } else {
+            this._dataStorageService.signupUser(this.userData);
           } 
         }
       })

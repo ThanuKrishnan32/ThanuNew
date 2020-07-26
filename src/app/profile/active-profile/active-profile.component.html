@@ -1,6 +1,6 @@
 <div fxLayout.lg="row" fxLayout="column" fxLayoutAlign="center center">    
         <div fxFlex.gt-sm= 90  fxLayoutAlign.gt-sm="center">
-            <h1 style="padding-top: 10px;">
+            <h1 class="padding-top-10px">
                 {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
             </h1>
         </div>
@@ -8,13 +8,13 @@
             <button mat-raised-button 
                     type="button" 
                     color="primary"
-                    style="margin-right: 10px; height: 35px;"
+                    class="legend-button"
                     (click)="openBottomLegendSheet()"
                     >Show Legend
             </button>
         </div>             
 </div>                       
-<div fxLayoutAlign="center center" fxLayout="column" style="padding-top: 30px;" fxLayoutGap="10px"> 
+<div fxLayoutAlign="center center" fxLayout="column" class="padding-top-30" fxLayoutGap="10px"> 
     <div *ngFor="let inputSkillType of skillTypes">
         <mat-accordion>
             <mat-expansion-panel fxFlex.lg="1000px"

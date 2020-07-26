@@ -15,7 +15,7 @@
                     <button mat-raised-button 
                             type="button" 
                             color="primary"
-                            style="height: 35px;"
+                            class="height-35"
                             (click)="openBottomLegendSheet()"
                     >Show Legend</button>
                 </div>        
@@ -25,13 +25,13 @@
                     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                         <div class="example-section">
                             <mat-label>Team :</mat-label>
-                            <mat-form-field style="margin: 15px; width: 85px;">  
+                            <mat-form-field class="team-field">  
                                 <mat-select  formControlName="team">
                                     <mat-option *ngFor="let fteam of availableTeams" [value]="fteam.value">
                                         {{fteam.name}}
                                     </mat-option>
                                 </mat-select>
-                                <mat-error *ngIf="f.team.errors?.required && f.team.touched">
+                                <mat-error *ngIf="formControl.team.errors?.required && formControl.team.touched">
                                     Please select a Team    
                                 </mat-error>
                             </mat-form-field>
@@ -39,9 +39,9 @@
                         <!-- This below piece of code is for Generic Skills -->
                         <div *ngIf="typeToEdit === 'genericSkills'">
                             <div formArrayName="genericSkills"  
-                                *ngFor="let skill of genericSkillControls; let i = index">
+                                *ngFor="let skill of getSkillControls('genericSkills'); let i = index">
                                 <div [formGroupName]="i" class="example-section">     
-                                    <mat-form-field style="width: 120px;">
+                                    <mat-form-field class="width-120">
                                     <mat-label>Generic Skill :</mat-label>
                                         <mat-select  formControlName="skillName">
                                             <mat-option *ngFor="let fskill of availableGenericSkills" [value]="fskill.name">
@@ -58,11 +58,11 @@
                                     <button mat-mini-fab
                                             type="button"
                                             color="warn"
-                                            style="display: table-cell; margin-left: 100px;"
-                                            *ngIf="sGenericFArray.length > 1"
+                                            class="minifab-style"
+                                            *ngIf="getFormArrayLength('genericSkills').length > 1"
                                             matTooltip="Delete Skill"
                                             matTooltipPosition="after"
-                                            (click)="removeGenericFormSkill(i)">
+                                            (click)="removeSkill(i,'genericSkills')">
                                         <mat-icon>remove</mat-icon>
                                     </button>
                                     <div class="example-section">
@@ -74,7 +74,7 @@
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
-                                                style="margin: 3px; width: 60px;">
+                                                class="slider-style">
                                         </mat-slider>
                                         <span>{{skill.get('skillLevel').value}} / {{maxSkillValue}}</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
@@ -89,7 +89,7 @@
                                 type="button" 
                                 color="primary"
                                 [disabled]="profileForm.get('genericSkills').invalid"
-                                (click)="onAddGenericSkill()">
+                                (click)="onAddSkill('genericSkills')">
                                 Add a Generic skill
                             </button>
                         </div>
@@ -98,9 +98,9 @@
                         <br>
                         <div *ngIf="typeToEdit === 'domainSkills'">
                             <div formArrayName="domainSkills"
-                                *ngFor="let skill of domainSkillControls; let i = index">
+                                *ngFor="let skill of getSkillControls('domainSkills'); let i = index">
                                 <div [formGroupName]="i" class="example-section">     
-                                    <mat-form-field style="width: 120px;">
+                                    <mat-form-field class="width-120">
                                     <mat-label>Domain Skill :</mat-label>
                                         <mat-select  formControlName="skillName">
                                             <mat-option *ngFor="let fskill of availableDomainSkills" [value]="fskill.name">
@@ -117,11 +117,11 @@
                                     <button mat-mini-fab
                                             type="button"
                                             color="warn"
-                                            style="display: table-cell; margin-left: 100px;"
-                                            *ngIf="sDomainFArray.length > 1"
+                                            class="minifab-style"
+                                            *ngIf="getFormArrayLength('domainSkills').length > 1"
                                             matTooltip="Delete Skill"
                                             matTooltipPosition="after"
-                                            (click)="removeDomainFormSkill(i)">
+                                            (click)="removeSkill(i,'domainSkills')">
                                         <mat-icon>remove</mat-icon>
                                     </button>
                                     <div class="example-section">
@@ -133,7 +133,7 @@
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
-                                                style="margin: 3px; width: 60px;">
+                                                class="slider-style">
                                         </mat-slider>
                                         <span>{{skill.get('skillLevel').value}} / {{maxSkillValue}}</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
@@ -148,7 +148,7 @@
                                 type="button" 
                                 color="primary"
                                 [disabled]="profileForm.get('domainSkills').invalid"
-                                (click)="onAddDomainSkill()">
+                                (click)="onAddSkill('domainSkills')">
                                 Add a Domain skill</button>
                             <br>    
                         </div>
@@ -156,9 +156,9 @@
                         <br>
                         <div *ngIf="typeToEdit === 'kbcSkills'">
                             <div formArrayName="kbcSkills"
-                                *ngFor="let skill of kbcSkillControls; let i = index">
+                                *ngFor="let skill of getSkillControls('kbcSkills'); let i = index">
                                 <div [formGroupName]="i" class="example-section">     
-                                    <mat-form-field style="width: 120px;">
+                                    <mat-form-field class="width-120">
                                     <mat-label>KBC Skill :</mat-label>
                                         <mat-select  formControlName="skillName">
                                             <mat-option *ngFor="let fskill of availableKbcSkills" [value]="fskill.name">
@@ -175,11 +175,11 @@
                                     <button mat-mini-fab
                                             type="button"
                                             color="warn"
-                                            style="display: table-cell; margin-left: 100px;"
-                                            *ngIf="sKbcFArray.length > 1"
+                                            class="minifab-style"
+                                            *ngIf="getFormArrayLength('kbcSkills').length > 1"
                                             matTooltip="Delete Skill"
                                             matTooltipPosition="after"
-                                            (click)="removeKbcFormSkill(i)">
+                                            (click)="removeSkill(i,'kbcSkills')">
                                         <mat-icon>remove</mat-icon>
                                     </button>
                                     <div class="example-section">
@@ -191,7 +191,7 @@
                                                 step="1"
                                                 thumbLabel
                                                 formControlName="skillLevel"
-                                                style="margin: 3px; width: 60px;">
+                                                class="slider-style">
                                         </mat-slider>
                                         <span>{{skill.get('skillLevel').value}} / {{maxSkillValue}}</span>
                                         <mat-error *ngIf="skill.get('skillLevel').hasError('required') && skill.get('skillLevel').touched">
@@ -206,14 +206,14 @@
                                 type="button" 
                                 color="primary"
                                 [disabled]="profileForm.get('kbcSkills').invalid"
-                                (click)="onAddKbcSkill()">
+                                (click)="onAddSkill('kbcSkills')">
                                 Add a KBC skill</button>
                         </div>    
                         <div fxLayout="column" fxLayoutAlign="center center">         
                         <button mat-raised-button 
                                 type="submit" 
                                 color="primary"
-                                style="margin-top: 10px;"
+                                class="margin-top-10px"
                                 [disabled]="profileForm.invalid">Save data</button>
                         </div>                      
                     </form>

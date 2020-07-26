@@ -6,10 +6,10 @@ import { MatBottomSheetRef} from '@angular/material/bottom-sheet';
     templateUrl: './bottomsheet-legend.component.html',
 })
 export class BottomSheetLegendComponent{
-    constructor(
+    public constructor(
     public bottomsheetRef: MatBottomSheetRef<BottomSheetLegendComponent>){}
 
-    openLink(event: MouseEvent): void {
+    public openLink(event: MouseEvent): void {
         this.bottomsheetRef.dismiss();
         event.preventDefault();
       }
