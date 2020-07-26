@@ -162,14 +162,6 @@
         {
           "skillName": "JCL",
           "skillLevel": 6
-        },
-        {
-          "skillName": "Angular",
-          "skillLevel": 6
-        },
-        {
-          "skillName": "Typescript",
-          "skillLevel": 6
         }
       ],
       "domainSkills": [
@@ -365,6 +357,22 @@
       "lastName": " ",
       "team": " ",
       "genericSkills": [],
+      "domainSkills": [],
+      "kbcSkills": []
+    },
+    {
+      "id": 11,
+      "userId": "JE51456",
+      "password": "tester",
+      "firstName": "Sachin",
+      "lastName": "B",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "JCL",
+          "skillLevel": 7
+        }
+      ],
       "domainSkills": [],
       "kbcSkills": []
     }

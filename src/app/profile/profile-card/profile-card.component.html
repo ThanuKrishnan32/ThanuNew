@@ -30,7 +30,7 @@
             <div *ngIf = "userSkillsArray === undefined">
                 <h4>You can add skills by clicking the <em>Edit Skill</em> button</h4>    
             </div>
-            <div *ngIf="chartOptions">
+            <div *ngIf="chartOptions && userSkillsArray">
                 <highcharts-chart 
                     [Highcharts]="Highcharts"
                     [options]="chartOptions"
@@ -38,7 +38,7 @@
                 ></highcharts-chart>
             </div> 
         </div>
-        <div  fxLayout="row" 
+        <!-- <div  fxLayout="row" 
               fxLayoutAlign="start center">
             <form #textForm="ngForm" 
                   (ngSubmit)="onComment(textForm)" 
@@ -65,7 +65,7 @@
                         color="primary"
                         [disabled]="textForm.pristine">Comment</button>
                 </div>        
-            </form>    
-        </div>
+            </form>     
+        </div> -->
     </div>
 </div>

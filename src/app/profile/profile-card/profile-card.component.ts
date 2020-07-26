@@ -180,8 +180,8 @@ public createSkillsChart(): void {
  }
 }
 
-public onComment(form: NgForm): void {
-  console.log(form.value.inputText);
-  this.inputText = ' ';
-}
+// public onComment(form: NgForm): void {
+//   console.log(form.value.inputText);
+//   this.inputText = ' ';
+// }
 }

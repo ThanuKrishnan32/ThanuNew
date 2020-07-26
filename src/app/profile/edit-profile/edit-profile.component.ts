@@ -38,6 +38,7 @@ export class EditProfileComponent implements OnInit {
   public userDomainSkills: Skill[];
   public userKbcSkills: Skill[];
   public inputSkillArray: Skill[];
+  public skillsAddedRemotely: string[] = [];
 
   public inputId: number;
   public maxSkillValue: number = 8;
@@ -121,9 +122,9 @@ export class EditProfileComponent implements OnInit {
         firstName: new FormControl('',[Validators.required]),
         lastName: new FormControl('',[Validators.required]),
         team : new FormControl('',[Validators.required]),     
-        genericSkills: new FormArray([this.initSkillArray()]),
-        domainSkills: new FormArray([this.initSkillArray()]),
-        kbcSkills: new FormArray([this.initSkillArray()])
+        genericSkills: new FormArray([]),
+        domainSkills: new FormArray([]),
+        kbcSkills: new FormArray([])
       }
     );
   }
@@ -171,25 +172,52 @@ export class EditProfileComponent implements OnInit {
   }
   
   public duplicateSkillCheck(control : FormControl): {[s: string]: boolean} {
-      if (this.domLoaded) {
-        this.inputSkillArray = this.profileForm.get(this.typeToEdit).value;
-      } else {
-        this.inputSkillArray = [];
-      }
-      if(this.inputSkillArray.length > 1) {
-        if (control.value > ' ') {
-          let test = this.inputSkillArray.find(data => data.skillName === control.value);
-          if (test) {
-            return {'duplicateValue' : true}
-          } else {
-            return null;
-          } 
+    if (this.domLoaded) {
+      this.inputSkillArray = this.profileForm.get(this.typeToEdit).value;
+    } else {
+      this.inputSkillArray = [];
+    }
+    if(this.inputSkillArray.length > 1) {
+      if (control.value > ' ') {
+        let test = this.inputSkillArray.find(data => data.skillName === control.value);
+        if (test) {
+          let test = this.skillsAddedRemotely.find(data => data === control.value);  
+          if (test){
+            let count = 0;
+            for (let i = 0; i <= this.skillsAddedRemotely.length; i++) {
+              if (this.skillsAddedRemotely[i] === control.value) {
+                  count++;
+              }
+            }
+            console.log(count);
+            if(count > 1){
+              let removed= false;
+              for (let i = 0; i <= this.skillsAddedRemotely.length; i++) {
+                if (this.skillsAddedRemotely[i] === control.value) {
+                   if (removed === false){
+                     removed = true;
+                     this.skillsAddedRemotely.splice(i,1);
+                   } 
+                }
+              }
+              return {'duplicateValue' : true};    
+            }else {
+              this.skillsAddedRemotely.push(control.value);
+              return null;
+            }  
+          }else {
+            return {'duplicateValue' : true};
+          }  
         } else {
+          this.skillsAddedRemotely.push(control.value);
           return null;
-        }  
+        } 
       } else {
         return null;
-      }
+      }  
+    } else {
+      return null;
+    }
   }
 
   public onSubmit(): void {
