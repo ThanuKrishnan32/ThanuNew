@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: Paths.Admin, component: AdminComponent},
   { path: Paths.UserProfile, component: ProfileComponent, canActivate :[ProfileGuard]},
   { path: Paths.ProfileEdit, component: EditProfileComponent, canActivate :[ProfileGuard]},
+  { path: '**', redirectTo: '/' + Paths.Login }
 ];
 
 @NgModule({

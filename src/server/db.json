@@ -145,7 +145,7 @@
       "password": "tester",
       "firstName": "Thanu",
       "lastName": "Krishnan",
-      "team": "ODM",
+      "team": "OPN",
       "genericSkills": [
         {
           "skillName": "Javascript",
@@ -162,6 +162,14 @@
         {
           "skillName": "JCL",
           "skillLevel": 6
+        },
+        {
+          "skillName": "Angular",
+          "skillLevel": 6
+        },
+        {
+          "skillName": "Typescript",
+          "skillLevel": 5
         }
       ],
       "domainSkills": [
@@ -170,12 +178,12 @@
           "skillLevel": 8
         },
         {
-          "skillName": "Collection & Distribution",
-          "skillLevel": 5
-        },
-        {
           "skillName": "Cards & Payments",
           "skillLevel": 8
+        },
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 7
         }
       ],
       "kbcSkills": [
