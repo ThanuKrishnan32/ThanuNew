@@ -213,9 +213,13 @@ export class EditProfileComponent implements OnInit {
           return null;
         } 
       } else {
+        this.skillsAddedRemotely.push(control.value);
         return null;
       }  
     } else {
+      if (control.value > ' ') {
+        this.skillsAddedRemotely.push(control.value);
+      }  
       return null;
     }
   }

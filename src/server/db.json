@@ -165,10 +165,6 @@
         },
         {
           "skillName": "Angular",
-          "skillLevel": 6
-        },
-        {
-          "skillName": "Typescript",
           "skillLevel": 5
         }
       ],
@@ -383,6 +379,44 @@
       ],
       "domainSkills": [],
       "kbcSkills": []
+    },
+    {
+      "id": 12,
+      "userId": "JE43565",
+      "password": "tester",
+      "firstName": "Giri",
+      "lastName": "P",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Javascript",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 6
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "EGL",
+          "skillLevel": 7
+        },
+        {
+          "skillName": "RDZ",
+          "skillLevel": 6
+        }
+      ]
     }
   ]
 }
