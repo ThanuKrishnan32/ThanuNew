@@ -18,49 +18,61 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { HighchartsChartModule } from 'highcharts-angular';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
     FlexLayoutModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatListModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatDialogModule,
+    FormsModule,
+    HighchartsChartModule,
+    MatBottomSheetModule,
+    MatButtonModule,
     MatCardModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
     MatProgressBarModule,
     MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
     MatSliderModule,
-    MatTooltipModule
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    TextFieldModule
   ],
-  exports : [MatMenuModule,
-             MatButtonModule,
-             MatFormFieldModule,
-             MatInputModule,
-             FormsModule,
-             MatSidenavModule,
+  exports : [
              FlexLayoutModule,
-             MatIconModule,
-             MatToolbarModule,
-             MatListModule,
-             MatSelectModule,
-             MatTabsModule,
-             MatDialogModule,
+             FormsModule,
+             HighchartsChartModule,
+             MatBottomSheetModule,
+             MatButtonModule,
              MatCardModule,
+             MatDialogModule,
+             MatExpansionModule,
+             MatFormFieldModule,
+             MatIconModule,
+             MatInputModule,
+             MatListModule,
+             MatMenuModule,
              MatProgressBarModule,
              MatRadioModule,
-             ReactiveFormsModule,
+             MatSelectModule,
+             MatSidenavModule,
              MatSliderModule,
-             MatTooltipModule]
+             MatTabsModule,
+             MatToolbarModule,
+             MatTooltipModule,
+             ReactiveFormsModule,
+             TextFieldModule]
 })
 export class MaterialModule { }

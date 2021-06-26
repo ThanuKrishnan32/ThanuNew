@@ -1,0 +1,21 @@
+export const ProfileCard = {
+    caseGS : 'Generic Skills',
+    qpVGS : 'genericSkills',
+    cttGS : 'Your General Skills',
+    ccGS: 'General',
+    csGS: '(example: Angular, Javascript, Cobol, DB2 etc.,)',
+    caseDS : 'Domain Skills',
+    qpVDS : 'domainSkills',
+    cttDS : 'Your Domain Skills',
+    ccDS: 'Domain',
+    csDS: '(example: Cards, payments, Life Insurance etc.,)',
+    caseKS : 'KBC Skills',
+    qpVKS : 'kbcSkills',
+    cttKS : 'Your KBC specific Skills',
+    ccKS: 'KBC Skills',
+    csKS: '(example: tools like AMB, EGL, IDZ, TOPAZ etc.,)',
+    chartType: 'bar',
+    titleText: 'Skill Level',
+    titleAlign: 'high',
+    labelOverFlow: 'justify'
+}

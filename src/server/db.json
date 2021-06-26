@@ -8,7 +8,7 @@
     {
       "id": 1,
       "name": "ODM",
-      "value": "OPN"
+      "value": "ODM"
     },
     {
       "id": 2,
@@ -16,18 +16,66 @@
       "value": "OBR"
     }
   ],
-  "skills": [
+  "genericskills": [
     {
       "id": 0,
       "name": "Cobol"
     },
     {
       "id": 1,
-      "name": "JCL"
+      "name": "DB2"
     },
     {
       "id": 2,
-      "name": "DB2"
+      "name": "Angular"
+    },
+    {
+      "id": 3,
+      "name": "JCL"
+    },
+    {
+      "id": 4,
+      "name": "Javascript"
+    },
+    {
+      "id": 5,
+      "name": "Typescript"
+    }
+  ],
+  "domainskills": [
+    {
+      "id": 0,
+      "name": "Cards & Payments"
+    },
+    {
+      "id": 1,
+      "name": "Life Insurance"
+    },
+    {
+      "id": 2,
+      "name": "Collection & Distribution"
+    }
+  ],
+  "kbcskills": [
+    {
+      "id": 0,
+      "name": "AMB"
+    },
+    {
+      "id": 1,
+      "name": "EGL"
+    },
+    {
+      "id": 2,
+      "name": "IDZ"
+    },
+    {
+      "id": 3,
+      "name": "RDZ"
+    },
+    {
+      "id": 4,
+      "name": "TOPAZ"
     }
   ],
   "users": [
@@ -55,24 +103,102 @@
     },
     {
       "id": 1,
-      "userId": "JE10019",
+      "userId": "JE10012",
       "password": "tester",
-      "firstName": "Thanu",
-      "lastName": "Krishnan",
-      "team": "OBR",
-      "skills": [
+      "firstName": "Santhana",
+      "lastName": "Kumar",
+      "team": "OPN",
+      "genericSkills": [
         {
           "skillName": "Cobol",
-          "skillLevel": 85
+          "skillLevel": "83"
         },
         {
           "skillName": "JCL",
-          "skillLevel": 80
+          "skillLevel": "65"
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Card and Payments",
+          "skillLevel": 56
+        },
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 98
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "AMB",
+          "skillLevel": "83"
+        },
+        {
+          "skillName": "EGL",
+          "skillLevel": "65"
         }
       ]
     },
     {
       "id": 2,
+      "userId": "JE10019",
+      "password": "tester",
+      "firstName": "Thanu",
+      "lastName": "Krishnan",
+      "team": "OPN",
+      "genericSkills": [
+        {
+          "skillName": "Javascript",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Cobol",
+          "skillLevel": 7
+        },
+        {
+          "skillName": "DB2",
+          "skillLevel": 7
+        },
+        {
+          "skillName": "JCL",
+          "skillLevel": 6
+        },
+        {
+          "skillName": "Angular",
+          "skillLevel": 5
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 8
+        },
+        {
+          "skillName": "Cards & Payments",
+          "skillLevel": 8
+        },
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 7
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "IDZ",
+          "skillLevel": 6
+        },
+        {
+          "skillName": "EGL",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "RDZ",
+          "skillLevel": 6
+        }
+      ]
+    },
+    {
+      "id": 3,
       "firstName": "Praveen",
       "lastName": "L",
       "password": "tester",
@@ -80,36 +206,217 @@
       "userId": "JE10017"
     },
     {
-      "userId": "JE10021",
+      "id": 4,
+      "userId": "JE45678",
       "password": "tester",
       "firstName": "Thanu",
       "lastName": "Krishnan",
-      "team": "OPN",
-      "id": 3
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 43
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 50
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "TOPAZ",
+          "skillLevel": 56
+        }
+      ]
     },
     {
-      "userId": "JE10022",
+      "id": 5,
+      "userId": "JE12346",
       "password": "tester",
-      "firstName": "Hari",
-      "lastName": "Krishnan",
-      "team": "OPN",
-      "id": 4
+      "firstName": "David",
+      "lastName": "Iniesta",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        },
+        {
+          "skillName": "Angular",
+          "skillLevel": 5
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 2
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "EGL",
+          "skillLevel": 2
+        },
+        {
+          "skillName": "IDZ",
+          "skillLevel": 5
+        }
+      ]
     },
     {
-      "userId": "JE10023",
+      "id": 6,
+      "userId": "JE12347",
       "password": "tester",
-      "firstName": "Gagan",
+      "firstName": "Giri",
       "lastName": "Babu",
-      "team": "OPN",
-      "id": 5
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 7
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "AMB",
+          "skillLevel": 6
+        }
+      ]
     },
     {
-      "userId": "JE10024",
+      "id": 7,
+      "userId": "JE12348",
       "password": "tester",
-      "firstName": "Suresh",
-      "lastName": "Gopi",
+      "firstName": "David",
+      "lastName": "S",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [],
+      "kbcSkills": []
+    },
+    {
+      "id": 8,
+      "userId": "JE14356",
+      "password": "tester",
+      "firstName": "Harsh",
+      "lastName": "Vardhan",
       "team": "OPN",
-      "id": 6
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 6
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "EGL",
+          "skillLevel": 6
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "userId": "JE12345",
+      "password": "tester",
+      "firstName": "Solla",
+      "lastName": "Mudiyathu",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 5
+        }
+      ],
+      "domainSkills": [],
+      "kbcSkills": []
+    },
+    {
+      "id": 10,
+      "userId": "ADMINE",
+      "password": "admin123",
+      "firstName": " ",
+      "lastName": " ",
+      "team": " ",
+      "genericSkills": [],
+      "domainSkills": [],
+      "kbcSkills": []
+    },
+    {
+      "id": 11,
+      "userId": "JE51456",
+      "password": "tester",
+      "firstName": "Sachin",
+      "lastName": "B",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "JCL",
+          "skillLevel": 7
+        }
+      ],
+      "domainSkills": [],
+      "kbcSkills": []
+    },
+    {
+      "id": 12,
+      "userId": "JE43565",
+      "password": "tester",
+      "firstName": "Giri",
+      "lastName": "P",
+      "team": "ODM",
+      "genericSkills": [
+        {
+          "skillName": "DB2",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Javascript",
+          "skillLevel": 6
+        }
+      ],
+      "domainSkills": [
+        {
+          "skillName": "Life Insurance",
+          "skillLevel": 5
+        },
+        {
+          "skillName": "Collection & Distribution",
+          "skillLevel": 6
+        }
+      ],
+      "kbcSkills": [
+        {
+          "skillName": "EGL",
+          "skillLevel": 7
+        },
+        {
+          "skillName": "RDZ",
+          "skillLevel": 6
+        }
+      ]
     }
   ]
 }

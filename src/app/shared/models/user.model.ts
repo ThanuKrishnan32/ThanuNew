@@ -7,5 +7,7 @@ export interface User{
     firstName: string,
     lastName: string,
     team: string,
-    skills: Skill[]
+    genericSkills: Skill[],
+    domainSkills: Skill[],
+    kbcSkills: Skill[],
 }

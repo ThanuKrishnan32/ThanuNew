@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +8,13 @@ import { DataStorage } from 'src/app/shared/data-storage.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor( private dataStorageService : DataStorage) { }
+  public constructor( private readonly _dataStorageService : DataStorage) { }
+  @ViewChild('loginForm', { static: true }) loginForm : NgForm;
+  public ngOnInit(): void {}
 
-  ngOnInit(): void {}
-
-  onSubmit(form: NgForm){
+  public onSubmit(form: NgForm) {
       const userId = form.value.userId;
       const password = form.value.password;
-      this.dataStorageService.loginUser(userId,password);
+      this._dataStorageService.loginUser(userId,password);
   }
 }

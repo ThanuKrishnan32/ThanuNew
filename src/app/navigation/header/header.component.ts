@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { Paths } from 'src/app/constants/paths';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,37 +10,45 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() sideNavToggle = new EventEmitter<void>();
-  loggedInUser = false;
-  loggedInUserId: number;
-  constructor( private datastorageService: DataStorage,
-               private router: Router) { }
+  public loggedInUser = false;
+  private loggedInUserId: number;
+  public constructor( private readonly _datastorageService: DataStorage,
+                      private readonly _router: Router) { }
 
-  ngOnInit() {
-    this.datastorageService.isAuth.subscribe(
-      isloggedIn =>{
+  public ngOnInit(): void {
+    this._datastorageService.isAuth.subscribe(
+      isloggedIn => {
         this.loggedInUser = isloggedIn;
       }
     )
-    this.datastorageService.loggedInUser.subscribe(
-      user=>{
+    this._datastorageService.loggedInUser.subscribe(
+      user => {
           this.loggedInUserId = user.id;
       }
     )
   }
 
-  onClick(){
+ public onClick(): void {
     this.sideNavToggle.emit();
   }
 
-  onProfileClick(){
-    if(this.loggedInUserId === undefined){
-      this.router.navigate(['/login']);
-    }else{
-      this.router.navigate(['/profile',this.loggedInUserId]);
+ public onProfileClick(): void {
+    if(this.loggedInUserId === undefined) {
+      this._router.navigate(['/' + Paths.Login]);
+    }else { 
+      this._router.navigate(['/' + Paths.Profile,this.loggedInUserId]);
     }
   }
 
-  onLogOut(){
-    this.datastorageService.logout();
+ public onLoginClick(): void {
+    this._router.navigate(['/' + Paths.Login]);
+ } 
+
+ public onSignupClick(): void {
+  this._router.navigate(['/' + Paths.Signup]);
+ }
+
+ public onLogOut(): void {
+    this._datastorageService.logout();
   }
 }

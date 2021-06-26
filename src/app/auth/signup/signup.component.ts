@@ -1,10 +1,12 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../../shared/dialog.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { teams } from 'src/app/shared/teams.model';
-import { User } from 'src/app/shared/user.model';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { DialogErrorComponent } from 'src/app/shared/dialogerror/dialog-error.component';
+import { Errors } from 'src/app/constants/errors';
+import { MatDialog } from '@angular/material/dialog';
+import { NgForm } from '@angular/forms';
+import { teams } from 'src/app/shared/models/teams.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -12,38 +14,42 @@ import { User } from 'src/app/shared/user.model';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  availableTeams: teams[];
-  teamPos: String;
-  userData: User;
-  isOk: boolean;
-  userArray : User[];
-  userCheckData: User;
+  public availableTeams: teams[];
+  public teamPos: String;
+  public userData: User;
+  public isOk: boolean;
+  public userArray : User[];
+  public userCheckData: User;
 
-  constructor(public dialog: MatDialog,
-              private dataStorageService: DataStorage) { }
+  @ViewChild('signupForm', { static: true }) signupForm : NgForm;
 
-  ngOnInit(): void {
-    this.dataStorageService.getTeams().subscribe(teams=>{
+  public constructor(public readonly _dialog: MatDialog,
+                     private readonly _dataStorageService: DataStorage) { }
+
+  public ngOnInit(): void {
+    this._dataStorageService.getTeams().subscribe(teams => {
       this.availableTeams = teams
     })
-    this.dataStorageService.getUsers().subscribe(
-      users =>{
+    this._dataStorageService.getUsers().subscribe(
+      users => {
         this.userArray = users;
       }
     )
   }
 
-  onSubmit(form: NgForm){
-    const dialogref = this.dialog.open(DialogComponent);
-    dialogref.afterClosed().subscribe(
-      userchoice=>{
-        if(userchoice === true){
+ public onSubmit(form: NgForm) {
+    const dialogRef = this._dialog.open(DialogComponent);
+    dialogRef.afterClosed().subscribe(
+      userchoice => {
+        if(userchoice === true) {
           this.userData = form.value;
           this.userCheckData = this.userArray.find(loginUser => loginUser.userId === this.userData.userId )
-          if(this.userCheckData){
-            alert('UserID already exists could you please check?')
-          }else{
-            this.dataStorageService.signupUser(this.userData);
+          if(this.userCheckData) {
+            const dialogRef = this._dialog.open(DialogErrorComponent, {
+              data: { error : Errors.uidalreadyexists }
+              });
+          } else {
+            this._dataStorageService.signupUser(this.userData);
           } 
         }
       })

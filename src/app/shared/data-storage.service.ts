@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
+import { AvailableSkill } from './models/availableSkill.model';
+import { DialogErrorComponent } from './dialogerror/dialog-error.component';
+import { Errors } from '../constants/errors';
 import { HttpClient } from '@angular/common/http';
-import { teams } from './teams.model';
-import { User } from './user.model';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogErrorComponent } from './dialog-error.component';
 import { Observable, Subject } from 'rxjs';
+import { Paths } from '../constants/paths';
 import { Router } from '@angular/router';
-import { AvailableSkill } from './availableSkill.model';
+import { teams } from './models/teams.model';
+import { Url } from '../constants/urls';
+import { User } from './models/user.model';
 
-@Injectable({providedIn:'root'})
+@Injectable({ providedIn:'root' })
 
-export class DataStorage{
-    teamsUrl = "http://localhost:3000/teams";
-    usersUrl = "http://localhost:3000/users";
-    skillsUrl = "http://localhost:3000/skills";
-
-    firstTime = false;
+export class DataStorage {
+    
     users : Observable<any[]>;
     userArray : User[] = [];
     userData: User;
@@ -28,55 +27,66 @@ export class DataStorage{
                 public dialog: MatDialog){}
 
 
-    getTeams(){
-        return this.httpClient.get<teams[]>(this.teamsUrl);
+    public getTeams(): Observable<teams[]> {
+        return this.httpClient.get<teams[]>(Url.teamsUrl);
     }
-    getUsers(){
-        return this.httpClient.get<User[]>(this.usersUrl);
+    public getUsers(): Observable<User[]> {
+        return this.httpClient.get<User[]>(Url.usersUrl);
     }
-    getSkills(){
-        return this.httpClient.get<AvailableSkill[]>(this.skillsUrl);
+    public getGenericSkills(): Observable<AvailableSkill[]> {
+        return this.httpClient.get<AvailableSkill[]>(Url.genericSkillsUrl);
+    }
+    public getDomainSkills(): Observable<AvailableSkill[]> {
+        return this.httpClient.get<AvailableSkill[]>(Url.domainSkillsUrl);
+    }
+    public getKbcSkills(): Observable<AvailableSkill[]> {
+        return this.httpClient.get<AvailableSkill[]>(Url.kbcSkillsUrl);
     }
 
-    loginUser(userId: string, password: string){
-        this.httpClient.get<User[]>(this.usersUrl).subscribe(
-            users =>{
+    public loginUser(userId: string, password: string): void {
+        this.httpClient.get<User[]>(Url.usersUrl).subscribe(
+            users => {
                 this.userArray = users;
                 this.userData = this.userArray.find(loginUser => loginUser.userId === userId )
                 if(this.userData?.password){
                     if(this.userData.password === password){
                         this.loggedInUser.next(this.userData);
-                        this.router.navigate(['/profile',this.userData.id]);
-                        this.isAuth.next(true);
-                    }else{
+                        if(this.userData.userId === "ADMINE"){
+                            this.router.navigate(['/' + Paths.Admin]);
+                            this.isAuth.next(true);
+                        }else {     
+                            this.router.navigate(['/' + Paths.Profile,this.userData.id]);
+                            this.isAuth.next(true);
+                        }
+                    }else {
                         const dialogref = this.dialog.open(DialogErrorComponent,{
-                            data:{error:'Could you please check your Username and password ?'}
+                            data:{error:Errors.checkunamepwd}
                         });
                     }
-                }else{
+                }else {
                     const dialogref = this.dialog.open(DialogErrorComponent,{
-                        data:{error:"Are you sure you are signedup user? The username/password doesn't seem right"}
+                        data:{error:Errors.checkunamepwd}
                     });
                 }
-             (error)=>{
+             (error) => {
                  console.log(error)
              }   
             }
         );                                   
     }
 
-    signupUser(user: User) {    
-            this.httpClient.post<User>(this.usersUrl,user).subscribe(
-                        signup=>{
+    public signupUser(user: User): void {    
+            this.httpClient.post<User>(Url.usersUrl,user).subscribe(
+                        signup => {
                            this.userData = signup;  
                            this.loggedInUser.next(this.userData);                 
-                           this.router.navigate(['/profile',this.userData.id]); 
+                           this.router.navigate(['/' + Paths.Profile,this.userData.id]); 
                            this.isAuth.next(true); 
                         }
                     );
     }
 
-    checkAuth(){
+    public checkAuth(): boolean{
         if(this.userData === undefined){
             return false
         }else{
@@ -84,17 +94,17 @@ export class DataStorage{
         }
     }
 
-    getUser(id: number){
-        this.httpClient.get<User>(this.usersUrl + '/' + id).subscribe(
-            user=>{ this.userData = user
+    public getUser(id: number): void{
+        this.httpClient.get<User>(Url.usersUrl + '/' + id).subscribe(
+            user => { this.userData = user
                     this.loggedInUser.next(this.userData);
                     this.isAuth.next(true);
                   }  
           );
     }
 
-    editUser(user: User,id: number){
-        this.httpClient.put<User>(this.usersUrl + '/' + id,user).subscribe(
+    public editUser(user: User,id: number): void {
+        this.httpClient.put<User>(Url.usersUrl + '/' + id,user).subscribe(
             editedUser => {this.userData = editedUser
                      this.loggedInUser.next(this.userData);
                      this.router.navigate(['/profile',this.userData.id]);
@@ -103,17 +113,16 @@ export class DataStorage{
         )
     }
 
-    logout(){
+    public logout(): void{
         this.userData.id = undefined;
         this.userData.firstName = undefined;
         this.userData.lastName = undefined;
         this.userData.password = undefined;
         this.userData.team = undefined;
-        this.userData.skills = undefined;
+        this.userData.genericSkills = undefined;
         this.loggedInUser.next(this.userData);
         this.isAuth.next(false);
-        this.router.navigate(['/login']);
-
+        this.router.navigate(['/' + Paths.Login]);
     }
 
     

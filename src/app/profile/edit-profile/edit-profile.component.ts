@@ -1,12 +1,17 @@
+import { ActivatedRoute, Params } from '@angular/router';
+import { AvailableSkill } from 'src/app/shared/models/availableSkill.model';
+import { BottomSheetLegendComponent } from 'src/app/shared/bottomsheet/bottomsheet-legend.component';
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { User } from 'src/app/shared/user.model';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder} from '@angular/forms';
-import { teams } from 'src/app/shared/teams.model';
-import { Skill } from 'src/app/shared/skill.model';
-import { AvailableSkill } from 'src/app/shared/availableSkill.model';
-import { DialogComponent } from '../../shared/dialog.component';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { FormGroup, FormControl, FormArray, Validators, FormBuilder, AbstractControl} from '@angular/forms';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
+import { ProfileCard } from 'src/app/constants/profileCardConstant';
+import { Skill } from 'src/app/shared/models/skill.model';
+import { teams } from 'src/app/shared/models/teams.model';
+import { User } from 'src/app/shared/models/user.model';
+import { Variables } from 'src/app/constants/variables';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,63 +20,99 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class EditProfileComponent implements OnInit {
 
-  userData : User = {
+  public userData : User = {
     id: 0,
-    userId: " ",
-    password: " ",
-    firstName: " ",
-    lastName: " ",
-    team: " ",
-    skills: []
+    userId: Variables.emptyString,
+    password: Variables.emptyString,
+    firstName: Variables.emptyString,
+    lastName: Variables.emptyString,
+    team: Variables.emptyString,
+    genericSkills: [] = [],
+    domainSkills: [] = [],
+    kbcSkills: [] = []
   }
 
-  profileForm: FormGroup;
-  availableTeams: teams[];
-  userSkills: Skill[];
-  availableSkills: AvailableSkill[];
+  public profileForm: FormGroup;
+  public availableTeams: teams[];
+  public userGenericSkills: Skill[];
+  public userDomainSkills: Skill[];
+  public userKbcSkills: Skill[];
+  public inputSkillArray: Skill[];
+  public skillsAddedRemotely: string[] = [];
 
-  constructor(private dataStorageService: DataStorage,
-              private fb: FormBuilder,
-              public dialog: MatDialog,) { }
+  public inputId: number;
+  public maxSkillValue: number = 8;
+  public typeToEdit: string;
+  public availableGenericSkills: AvailableSkill[];
+  public availableDomainSkills: AvailableSkill[];
+  public availableKbcSkills: AvailableSkill[];
+  public domLoaded: boolean = false;
 
-  ngOnInit() {
+  public constructor(private readonly _dataStorageService: DataStorage,
+                     private readonly _fb: FormBuilder,
+                     private readonly _dialog: MatDialog,
+                     private readonly _activatedRoute: ActivatedRoute,
+                     private readonly _bottomSheet: MatBottomSheet) { }
+
+  public ngOnInit(): void {
     this.initForm();
-    this.dataStorageService.loggedInUser.subscribe(
-      users=>{
-          this.userData = users;
-          this.userSkills = this.userData.skills;
-          this.setForm(); 
-      }
+    this._activatedRoute.params.subscribe(
+      (params : Params) => {
+        this.inputId = +params['id'];
+      } 
     );
-    this.dataStorageService.getTeams().subscribe(teams=>{
+    this._activatedRoute.queryParams.subscribe(
+      (params : Params) => {
+        this.typeToEdit = params['skill'];
+      } 
+    );
+    this._dataStorageService.getUser(this.inputId);
+    this._dataStorageService.loggedInUser.subscribe(
+      users => {
+          this.userData = users;
+          this.userGenericSkills = this.userData.genericSkills;
+          this.userDomainSkills = this.userData.domainSkills;
+          this.userKbcSkills = this.userData.kbcSkills;
+          this.setForm();
+          this.domLoaded = true;
+            }
+    );
+    this._dataStorageService.getTeams().subscribe(teams => {
       this.availableTeams = teams
     });  
-    this.dataStorageService.getSkills().subscribe(skills=>{
-      this.availableSkills = skills
+    this._dataStorageService.getGenericSkills().subscribe(skills => {
+      this.availableGenericSkills = skills;
+    });
+    this._dataStorageService.getDomainSkills().subscribe(skills => {
+      this.availableDomainSkills = skills;
+    });
+    this._dataStorageService.getKbcSkills().subscribe(skills => {
+      this.availableKbcSkills = skills;
     });
   }  
 
-  onAddSkill(){
-    (<FormArray>this.profileForm.get('skills')).push(this.initSkillArray());
+  public onAddSkill(skillToBeAdded: string): void {
+    (<FormArray>this.profileForm.get(skillToBeAdded)).push(this.initSkillArray());
   }
+  
 
-  get skillControls() { 
-    return (<FormArray>this.profileForm.get('skills')).controls;
+  public getSkillControls(skillType: string): AbstractControl[] { 
+    return (<FormArray>this.profileForm.get(skillType)).controls;
   }
-
-  get f(){
+  
+  get formControl() {
     return this.profileForm.controls;
   }
 
-  get sFArray(){
-    return <FormArray>this.profileForm.get('skills')
+  public getFormArrayLength(skillType: string): FormArray {
+    return <FormArray>this.profileForm.get(skillType);
   }
 
-  removeFormSkill(Arrayindex: number){
-    (<FormArray>this.profileForm.get('skills')).removeAt(Arrayindex);
+  public removeSkill(Arrayindex: number, skillType: string): void {
+    (<FormArray>this.profileForm.get(skillType)).removeAt(Arrayindex);
   }
 
-  private initForm(){
+  public initForm(): void {
 
     this.profileForm = new FormGroup(
       {
@@ -81,19 +122,21 @@ export class EditProfileComponent implements OnInit {
         firstName: new FormControl('',[Validators.required]),
         lastName: new FormControl('',[Validators.required]),
         team : new FormControl('',[Validators.required]),     
-        skills: new FormArray([this.initSkillArray()])
+        genericSkills: new FormArray([]),
+        domainSkills: new FormArray([]),
+        kbcSkills: new FormArray([])
       }
     );
   }
 
-  private initSkillArray(): FormGroup{
+  public initSkillArray(): FormGroup {
     return new FormGroup({
-      skillName: new FormControl('',[Validators.required]),
+      skillName: new FormControl('',[Validators.required,this.duplicateSkillCheck.bind(this)]),
       skillLevel: new FormControl('',[Validators.required])
       })
   }
 
-  private setForm(){
+  public setForm(): void {
 
     this.profileForm.patchValue({
       id: this.userData.id,
@@ -104,15 +147,17 @@ export class EditProfileComponent implements OnInit {
       team : this.userData.team
     }) 
 
-    this.profileForm.setControl('skills', this.setUserSkills(this.userData.skills));
+    this.profileForm.setControl(ProfileCard.qpVGS, this.setUserSkills(this.userData.genericSkills));
+    this.profileForm.setControl(ProfileCard.qpVDS, this.setUserSkills(this.userData.domainSkills));
+    this.profileForm.setControl(ProfileCard.qpVKS, this.setUserSkills(this.userData.kbcSkills));
   }
 
-  private setUserSkills(skills: Skill[]): FormArray{
+  public setUserSkills(skills: Skill[]): FormArray {
      const skillArray = new FormArray([]);
      if(skills){
      skills.forEach(
        skill =>{
-         skillArray.push(this.fb.group({
+         skillArray.push(this._fb.group({
           skillName: skill.skillName,
           skillLevel: skill.skillLevel           
          }))
@@ -122,15 +167,71 @@ export class EditProfileComponent implements OnInit {
      return skillArray; 
   }
 
-  onSubmit(){
-    const dialogref = this.dialog.open(DialogComponent);
-    dialogref.afterClosed().subscribe(
-      userchoice=>{
-        if(userchoice === true){
+  public openBottomLegendSheet(): void {
+    this._bottomSheet.open(BottomSheetLegendComponent);
+  }
+  
+  public duplicateSkillCheck(control : FormControl): {[s: string]: boolean} {
+    if (this.domLoaded) {
+      this.inputSkillArray = this.profileForm.get(this.typeToEdit).value;
+    } else {
+      this.inputSkillArray = [];
+    }
+    if(this.inputSkillArray.length > 1) {
+      if (control.value > ' ') {
+        let test = this.inputSkillArray.find(data => data.skillName === control.value);
+        if (test) {
+          let test = this.skillsAddedRemotely.find(data => data === control.value);  
+          if (test){
+            let count = 0;
+            for (let i = 0; i <= this.skillsAddedRemotely.length; i++) {
+              if (this.skillsAddedRemotely[i] === control.value) {
+                  count++;
+              }
+            }
+            console.log(count);
+            if(count > 1){
+              let removed= false;
+              for (let i = 0; i <= this.skillsAddedRemotely.length; i++) {
+                if (this.skillsAddedRemotely[i] === control.value) {
+                   if (removed === false){
+                     removed = true;
+                     this.skillsAddedRemotely.splice(i,1);
+                   } 
+                }
+              }
+              return {'duplicateValue' : true};    
+            }else {
+              this.skillsAddedRemotely.push(control.value);
+              return null;
+            }  
+          }else {
+            return {'duplicateValue' : true};
+          }  
+        } else {
+          this.skillsAddedRemotely.push(control.value);
+          return null;
+        } 
+      } else {
+        this.skillsAddedRemotely.push(control.value);
+        return null;
+      }  
+    } else {
+      if (control.value > ' ') {
+        this.skillsAddedRemotely.push(control.value);
+      }  
+      return null;
+    }
+  }
+
+  public onSubmit(): void {
+    const dialogRef = this._dialog.open(DialogComponent);
+    dialogRef.afterClosed().subscribe(
+      userchoice => {
+        if(userchoice === true) {
           this.userData = this.profileForm.value;
-          this.dataStorageService.editUser(this.userData,this.userData.id); 
+          this._dataStorageService.editUser(this.userData,this.userData.id); 
         }
-      })
-    
+      })  
   }
 }

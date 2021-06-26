@@ -1,6 +1,6 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
-import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,17 +8,17 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  inputId: number;
-  constructor(private datastorageService: DataStorage,
-              private activatedRoute: ActivatedRoute) { }
+  private inputId: number;
+  public constructor(private readonly _datastorageService: DataStorage,
+                     private readonly _activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      (params : Params)=>{
+  public ngOnInit(): void {
+    this._activatedRoute.params.subscribe(
+      (params : Params) => {
         this.inputId = +params['id'];
       } 
     );
-    this.datastorageService.getUser(this.inputId);
+    this._datastorageService.getUser(this.inputId);
   }
 
 }

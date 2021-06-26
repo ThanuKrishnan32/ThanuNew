@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataStorage } from 'src/app/shared/data-storage.service';
+import { Paths } from 'src/app/constants/paths';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,39 +10,39 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
   @Output() sideNavclose = new EventEmitter<void>();
-  loggedInUser= false;
-  loggedInUserId: number;
-  constructor(private datastorageService: DataStorage,
-              private router: Router) { }
+  public loggedInUser= false;
+  public loggedInUserId: number;
+  public constructor(private readonly _datastorageService: DataStorage,
+                     private readonly _router: Router) { }
 
-  ngOnInit() {
-    this.datastorageService.isAuth.subscribe(
-      isloggedIn =>{
+  public ngOnInit(): void {
+    this._datastorageService.isAuth.subscribe(
+      isloggedIn => {
         this.loggedInUser = isloggedIn;
       }
     )
-    this.datastorageService.loggedInUser.subscribe(
-      user=>{
+    this._datastorageService.loggedInUser.subscribe(
+      user => {
           this.loggedInUserId = user.id;
       }
     )
   }
 
-  onClick(){
+ public onClick(): void  {
     this.sideNavclose.emit();
   }
 
-  onProfileClick(){
+ public onProfileClick(): void {
     this.sideNavclose.emit();
     if(this.loggedInUserId === undefined){
-      this.router.navigate(['/login']);
+      this._router.navigate(['/' + Paths.Login]);
     }else{
-      this.router.navigate(['/profile',this.loggedInUserId]);
+      this._router.navigate(['/' + Paths.Profile,this.loggedInUserId]);
     }
   }
 
-  onLogoutClick(){
+ public onLogoutClick(): void {
     this.sideNavclose.emit();
-    this.datastorageService.logout();
+    this._datastorageService.logout();
   }
 }

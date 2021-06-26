@@ -7,7 +7,7 @@
         <mat-icon>person_add</mat-icon>
         <span class="nav-span">Signup</span>
     </a>
-    <a mat-list-item *ngIf="loggedInUser === true" (click)="onProfileClick()">
+    <a mat-list-item id="profileClick" *ngIf="loggedInUser === true" (click)="onProfileClick()">
         <mat-icon>person</mat-icon>
         <span class="nav-span">Your Profile</span>
     </a>

@@ -1,23 +1,34 @@
-<section fxLayout fxLayoutAlign="center" style="padding-top: 30px;">
-    <mat-card fxFlex="400px">
-        <mat-card-header>
-        <mat-card-title>
-            {{userData.firstName}} {{userData.lastName}}
-        </mat-card-title>
-        <mat-card-subtitle>
-            <div [innerHTML]="userData.userId"></div>
-        </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content fxLayout="column">
-            <h3>Team :  <span> {{userData.team}}</span></h3>
-            <h3>Skills : </h3>
-            <div *ngIf = "!userSkills">
-                 <h4>You can add skills in edit your profile tab</h4>    
-            </div>
-            <div style="padding-top: 5px;" *ngFor="let skill of userSkills">
-                <h4> {{skill.skillName}} : <span> {{skill.skillLevel}}/100</span></h4>
-                <mat-progress-bar mode="determinate" value={{skill.skillLevel}} color="accent"></mat-progress-bar>
-            </div>    
-        </mat-card-content>
-    </mat-card>
-</section>
+<div fxLayout.lg="row" fxLayout="column" fxLayoutAlign="center center">    
+        <div fxFlex.gt-sm= 90  fxLayoutAlign.gt-sm="center">
+            <h1 class="padding-top-10px">
+                {{userData.firstName}} {{userData.lastName}} : {{ userData.userId }}
+            </h1>
+        </div>
+        <div fxFlex.gt-sm= 10 fxLayoutAlign.gt-sm="end center">
+            <button mat-raised-button 
+                    type="button" 
+                    color="primary"
+                    class="legend-button"
+                    (click)="openBottomLegendSheet()"
+                    >Show Legend
+            </button>
+        </div>             
+</div>                       
+<div fxLayoutAlign="center center" fxLayout="column" class="padding-top-30" fxLayoutGap="10px"> 
+    <div *ngFor="let inputSkillType of skillTypes">
+        <mat-accordion>
+            <mat-expansion-panel fxFlex.lg="1000px"
+                                 fxFlex.md="750px"
+                                 fxFlex.sm="550px"
+                                 fxFlex.lt-sm="320px">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{inputSkillType}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-profile-card [inputSkillType]=inputSkillType
+                                  fxFlex.lg="900px" fxFlex="auto"></app-profile-card>
+            </mat-expansion-panel>    
+        </mat-accordion>
+    </div>  
+</div>

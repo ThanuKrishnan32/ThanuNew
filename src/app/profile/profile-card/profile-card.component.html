@@ -1,0 +1,71 @@
+<div fxLayoutAlign="center center" fxLayout="row"> 
+    <div fxFlex.lg="900px"
+         fxFlex.md="650px"
+         fxFlex.sm="450px"
+         fxFlex.xs="400px">
+        <div>
+            <h3>
+                {{inputSkillType}}
+                <span>
+                    <h5>
+                        {{cardSubtitle}}
+                    </h5>
+                </span>
+            </h3>
+            <div fxFlex
+                 fxLayout
+                 fxLayoutAlign="flex-end">
+                <button mat-fab color="primary"
+                        matTooltip="Edit Skill"
+                        matTooltipPosition = "right"
+                        (click)="onEditClick(qpVariable)"
+                >  
+                <mat-icon>edit</mat-icon>
+                </button> 
+            </div>       
+        </div>
+        <div fxLayout="column">
+            <h3>Team :  <span> {{userData.team}}</span></h3>
+            <h3>Skills : </h3>
+            <div *ngIf = "userSkillsArray === undefined">
+                <h4>You can add skills by clicking the <em>Edit Skill</em> button</h4>    
+            </div>
+            <div *ngIf="chartOptions && userSkillsArray">
+                <highcharts-chart 
+                    [Highcharts]="Highcharts"
+                    [options]="chartOptions"
+                    style= "display: flex;"
+                ></highcharts-chart>
+            </div> 
+        </div>
+        <!-- <div  fxLayout="row" 
+              fxLayoutAlign="start center">
+            <form #textForm="ngForm" 
+                  (ngSubmit)="onComment(textForm)" 
+                  fxLayout="column">
+                <mat-form-field style="width: 300px;">
+                    <mat-label>Please provide your comments here</mat-label>
+                    <textarea matInput
+                    type="input"
+                    name="inputText"
+                    [(ngModel)]="inputText"
+                    required
+                    #inputTextDom= "ngModel"
+                    maxlength="100"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    ></textarea>
+                    <mat-error *ngIf="inputTextDom.hasError('maxlength') && inputTextDom.touched">
+                        Cannot be more than 100 chars
+                    </mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button  
+                        type="submit" 
+                        color="primary"
+                        [disabled]="textForm.pristine">Comment</button>
+                </div>        
+            </form>     
+        </div> -->
+    </div>
+</div>
